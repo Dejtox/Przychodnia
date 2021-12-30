@@ -1,0 +1,12 @@
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.deps.json
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.dll
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\ref\Przychodnia.Shared.dll
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.pdb
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.csproj.AssemblyReference.cache
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.AssemblyInfoInputs.cache
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.AssemblyInfo.cs
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.csproj.CoreCompileInputs.cache
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.dll
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\ref\Przychodnia.Shared.dll
+C:\Users\marci\source\repos\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.pdb
