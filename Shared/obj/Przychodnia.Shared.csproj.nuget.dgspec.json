@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {}
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "projectName": "Przychodnia.Shared",
-        "projectPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\obj\\",
+        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -43,12 +43,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

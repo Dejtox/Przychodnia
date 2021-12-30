@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {}
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
         "projectName": "Przychodnia.Client",
-        "projectPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Client\\obj\\",
+        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
-                "projectPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
+              "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+                "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
               }
             }
           }
@@ -54,10 +54,6 @@
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.1, )"
             },
@@ -96,14 +92,14 @@
         }
       }
     },
-    "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "projectName": "Przychodnia.Shared",
-        "projectPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marci\\source\\repos\\Przychodnia\\Przychodnia\\Shared\\obj\\",
+        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -135,12 +131,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

@@ -11,41 +11,41 @@ build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = Przychodnia.Client
 build_property.RootNamespace = Przychodnia.Client
-build_property.ProjectDir = C:\Users\marci\source\repos\Przychodnia\Przychodnia\Client\
+build_property.ProjectDir = I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Client\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\marci\source\repos\Przychodnia\Przychodnia\Client
+build_property.MSBuildProjectDirectory = I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/App.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Pages/Counter.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Pages/FetchData.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Pages/Index.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Shared/SurveyPrompt.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/_Imports.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Shared/MainLayout.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qcmo5ziahw
 
-[C:/Users/marci/source/repos/Przychodnia/Przychodnia/Client/Shared/NavMenu.razor]
+[I:/Marcin/Szkoła/AO/Przychodnia/Przychodnia/Przychodnia/Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-g8s57315a6
