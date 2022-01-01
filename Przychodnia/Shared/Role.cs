@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Przychodnia.Shared
 {
-    internal class Class1
+    public class Role
     {
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

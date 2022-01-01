@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {}
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {}
   },
   "projects": {
-    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
         "projectName": "Przychodnia.Client",
-        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\obj\\",
+        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
-                "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
+              "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+                "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
               }
             }
           }
@@ -92,14 +92,14 @@
         }
       }
     },
-    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+    "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "projectName": "Przychodnia.Shared",
-        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
+        "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj",
         "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\obj\\",
+        "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"

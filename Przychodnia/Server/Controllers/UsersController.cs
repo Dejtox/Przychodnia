@@ -15,12 +15,6 @@ namespace Przychodnia.Server.Controllers
          {
         "Nowak", "Kowal", "Popielrz", "Sowa", "Pach", "Kulig",
         };
-        private static readonly string[] Roles = new[]
-         {
-        "Doktor", "Pacjent",
-        };
-
-        
 
         private readonly ILogger<UsersController> _logger;
 
@@ -30,13 +24,12 @@ namespace Przychodnia.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Users> Get()
+        public IEnumerable<User> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new Users
+            return Enumerable.Range(1, 5).Select(index => new User
             {
                 Name = Names[Random.Shared.Next(Names.Length)],
                 Surname = Surnames[Random.Shared.Next(Surnames.Length)],
-                Role = Roles[Random.Shared.Next(Roles.Length)]
             })
             .ToArray();
         }

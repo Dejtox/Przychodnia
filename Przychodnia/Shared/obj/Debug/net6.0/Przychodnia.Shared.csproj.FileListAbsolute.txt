@@ -22,3 +22,15 @@ I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0
 I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.dll
 I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\ref\Przychodnia.Shared.dll
 I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.pdb
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.deps.json
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.dll
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\ref\Przychodnia.Shared.dll
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\bin\Debug\net6.0\Przychodnia.Shared.pdb
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.csproj.AssemblyReference.cache
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.GeneratedMSBuildEditorConfig.editorconfig
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.AssemblyInfoInputs.cache
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.AssemblyInfo.cs
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.csproj.CoreCompileInputs.cache
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.dll
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\ref\Przychodnia.Shared.dll
+I:\Marcin\Szkoła\AO\Przychodnia\Przychodnia\Przychodnia\Przychodnia\Shared\obj\Debug\net6.0\Przychodnia.Shared.pdb

@@ -30,7 +30,6 @@ else
                     <td>@user.Name</td>
                     <td>@user.Surname</td>
                     <td>@user.ID</td>
-                    <td>@user.Role</td>
                 </tr>
             }
         </tbody>
@@ -38,10 +37,10 @@ else
 }
 
 @code {
-    private Users[]? users;
+    private User[]? users;
 
     protected override async Task OnInitializedAsync()
     {
-        users = await Http.GetFromJsonAsync<Users[]>("Users");
+        users = await Http.GetFromJsonAsync<User[]>("User");
     }
 }

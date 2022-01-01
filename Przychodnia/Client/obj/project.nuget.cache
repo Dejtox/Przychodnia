@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SWTNVzLJ9bYloGeGMP+/3nB9xMkhaAvlNmAv5aASihz9OaoofPmFQLmGD0CvshIpq4lIJC4XxzaThuPbbS3Ygg==",
+  "dgSpecHash": "jqciW6ljHEFCUAb3HVL9rIt0OtbEkrzuCNS9eYKFaQKaJKMCBO4SfBV/eZ1eFP91K1lr2Hi32JKUXnhIQ5koKw==",
   "success": true,
-  "projectFilePath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+  "projectFilePath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.1\\microsoft.aspnetcore.authorization.6.0.1.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.1\\microsoft.aspnetcore.components.6.0.1.nupkg.sha512",

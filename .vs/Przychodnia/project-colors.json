@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "613b7b31-f9f1-4ad8-ad87-a09e83ebaba5": {
+      "ProjectGuid": "613b7b31-f9f1-4ad8-ad87-a09e83ebaba5",
+      "DisplayName": "Przychodnia.Client",
+      "ColorIndex": 0
+    },
+    "1b9bb5be-f2cd-4d38-ae81-5b5ddf4a9456": {
+      "ProjectGuid": "1b9bb5be-f2cd-4d38-ae81-5b5ddf4a9456",
+      "DisplayName": "Przychodnia.Server",
+      "ColorIndex": 1
+    },
+    "a4914adc-7609-4786-9986-8585bfe30589": {
+      "ProjectGuid": "a4914adc-7609-4786-9986-8585bfe30589",
+      "DisplayName": "Przychodnia.Shared",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
