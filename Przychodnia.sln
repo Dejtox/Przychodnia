@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Przychodnia.Server", "Przychodnia\Server\Przychodnia.Server.csproj", "{1B9BB5BE-F2CD-4D38-AE81-5B5DDF4A9456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Przychodnia.Server", "Przychodnia\Server\Przychodnia.Server.csproj", "{1B9BB5BE-F2CD-4D38-AE81-5B5DDF4A9456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Przychodnia.Client", "Przychodnia\Client\Przychodnia.Client.csproj", "{613B7B31-F9F1-4AD8-AD87-A09E83EBABA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Przychodnia.Client", "Przychodnia\Client\Przychodnia.Client.csproj", "{613B7B31-F9F1-4AD8-AD87-A09E83EBABA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Przychodnia.Shared", "Przychodnia\Shared\Przychodnia.Shared.csproj", "{A4914ADC-7609-4786-9986-8585BFE30589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Przychodnia.Shared", "Przychodnia\Shared\Przychodnia.Shared.csproj", "{A4914ADC-7609-4786-9986-8585BFE30589}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

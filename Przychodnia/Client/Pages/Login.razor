@@ -1,0 +1,41 @@
+﻿@page "/"
+
+<div class="d-flex justify-content-center">
+    <div class="login-pane d-flex flex-column">
+        <div style="padding: 100px 0px">
+            <RadzenCard>
+                <h2 class="mb-4">Zaloguj się</h2>
+                <RadzenTemplateForm Data=@("Localization")>
+                <RadzenLogin AllowRegister="true" AllowResetPassword="false"
+                                LoginText="Zaloguj" UserText="Login" PasswordText="Hasło"
+                                UserRequired="Login jest wymagany"
+                                PasswordRequired="Hasło jest wymagane"
+                                RegisterText="Rejestracja"
+                                RegisterMessageText="Nie posiadasz konta?"
+                                Login=@(args => OnLogin(args, "Localized login"))
+                                Register=@(args => OnRegister()) />
+                </RadzenTemplateForm>
+            </RadzenCard>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@code {
+    string userName = "";
+    string password = "";
+
+
+    void OnLogin(LoginArgs args, string name)
+    {
+        Console.WriteLine($"{name} -> Username: {args.Username} and password: {args.Password}");
+    }
+
+    void OnRegister()
+    {
+        
+    }
+}
