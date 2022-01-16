@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /Przychodnia/Server/Migrations
 /Przychodnia/Server/.config
+/Przychodnia/Server/obj
+/Przychodnia/Client/obj
+/Przychodnia/Shared/obj
