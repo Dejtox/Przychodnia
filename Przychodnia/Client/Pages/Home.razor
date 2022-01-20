@@ -1,12 +1,15 @@
 ﻿@page "/home"
 @using Przychodnia.Shared
+@using Przychodnia.Client.Models.Adaptors
+@using Przychodnia.Client.Components
 @inject DialogService DialogService
 
 <h3>Home</h3>
 
 <RadzenScheduler LoadData=@OnLoadData @ref=@scheduler SlotRender=@OnSlotRender style="height: 768px;" TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
     TextProperty="Text" SelectedIndex="2"
-    AppointmentRender=@OnAppointmentRender>
+    AppointmentRender=@OnAppointmentRender
+    AppointmentSelect=@OnAppointmentSelect>
     <RadzenDayView />
     <RadzenWeekView />
     <RadzenMonthView />
@@ -16,14 +19,6 @@
 
 @code {
     RadzenScheduler<Appointment> scheduler;
-
-    class Appointment
-    {
-        public Visit visit;
-        public string Text {get{ return visit.Name; }}
-        public DateTime Start { get { return visit.Date; } }
-        public DateTime End {get{ return visit.Date.AddMinutes(visit.Duration); }}
-    }
 
     async Task<List<Appointment>> visitToAppointment(IEnumerable<Visit> visits)
     {
@@ -84,10 +79,10 @@
 
 
     async Task OnLoadData(SchedulerLoadDataEventArgs args)
-      {
+    {
         // Get the appointments for between the Start and End
         appointments = await visitToAppointment(visits);
-      }
+    }
 
     void OnSlotRender(SchedulerSlotRenderEventArgs args) 
     {
@@ -114,5 +109,14 @@
         }
     }
 
+    async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Appointment> args)
+    {
+        await DialogService.OpenAsync<VisitDialog>(
+            "View Visit", 
+            new Dictionary<string, object> { { "appointment", args.Data } }
+        );
+
+        await scheduler.Reload();
+    }
     
 }
