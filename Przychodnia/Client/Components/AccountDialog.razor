@@ -1,0 +1,69 @@
+﻿@using Przychodnia.Shared
+@inject DialogService DialogService
+
+
+<RadzenTemplateForm Data="@edditedAccount" Submit="@((User args) => { Submit(args); })">
+    <RadzenFieldset>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Imię" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@edditedAccount.Name style="width: 100%;" Name="Name" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Nazwisko" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@edditedAccount.Surname style="width: 100%;" Name="Surname" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Zdjęcie profilowe" />
+            </div>
+            <div class="col-md-8">
+                <RadzenFileInput @bind-Value=@edditedAccount.PhotoPath TValue="string" Class="w-100" 
+                Change=@(args => OnChange(args, "FileInput")) Error=@(args => OnError(args, "FileInput")) />
+            </div>
+        </div>
+    </RadzenFieldset>
+    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zaktualizuj" />
+</RadzenTemplateForm>
+
+@code {
+    [Parameter]
+    public User account { get; set; }
+
+    User edditedAccount;
+
+    protected override void OnParametersSet()
+    {
+        edditedAccount = new User
+            {
+                Name = account.Name,
+                Surname = account.Surname,
+                PhotoPath = account.PhotoPath
+            };
+    }
+
+    void OnChange(string value, string name)
+    {
+        Console.WriteLine($"{name} value changed");
+    }
+
+    void OnError(UploadErrorEventArgs args, string name)
+    {
+        Console.WriteLine($"{args.Message}");
+    }
+
+    void Submit(User arg)
+    {
+        account.Name = edditedAccount.Name;
+        account.Surname = edditedAccount.Surname;
+        account.PhotoPath = edditedAccount.PhotoPath;
+        DialogService.Close();
+    }
+}

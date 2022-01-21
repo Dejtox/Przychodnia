@@ -4,9 +4,37 @@
 @using Przychodnia.Client.Components
 @inject DialogService DialogService
 
-<h3>Home</h3>
+<h3>Strona Główna</h3>
 
-<RadzenScheduler LoadData=@OnLoadData @ref=@scheduler SlotRender=@OnSlotRender style="height: 768px;" TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
+<div class="d-flex justify-content-evenly">
+    <div>
+        <div>
+            <RadzenCard class="m-3">
+                <h3 class="h5">Contact</h3>
+                <div class="d-flex flex-row">
+                    <RadzenImage Path="@account.PhotoPath" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                    <div>
+                        <div>Imię i nazwisko</div>
+                        <div><b>@($"{account.Name} {account.Surname}")</b></div>
+                        <div><b>@account.RoleName.RoleName</b></div>                        
+                        
+                    </div>
+                </div>
+                <RadzenButton Click=@(args => OnAccountSelect(account)) Text="Aktualizuj Informacje" Icon="account_box" ButtonStyle="ButtonStyle.Secondary" />
+            </RadzenCard>
+            <RadzenCard class="m-3">
+                <h3 class="h5">Opłacone wizyty</h3>
+                <div class="row">
+                <RadzenChart>
+                    <RadzenPieSeries Data="@paidVisits" CategoryProperty="Name" ValueProperty="Amount"/>
+                    <RadzenLegend Position="LegendPosition.Bottom"/>
+                </RadzenChart>
+                </div>
+            </RadzenCard>
+        </div>
+    </div>
+
+    <RadzenScheduler Style="width: calc(100% - 400px); height: auto; aspect-ratio: 1.3;" LoadData=@OnLoadData @ref=@scheduler SlotRender=@OnSlotRender  TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
     TextProperty="Text" SelectedIndex="2"
     AppointmentRender=@OnAppointmentRender
     AppointmentSelect=@OnAppointmentSelect>
@@ -14,11 +42,41 @@
     <RadzenWeekView />
     <RadzenMonthView />
 </RadzenScheduler>
+</div>
+
+
 
 
 
 @code {
     RadzenScheduler<Appointment> scheduler;
+
+    User account = new User
+        {
+            ID = 1,
+            Name = "Sebastian",
+            Surname = "Zellah",
+            PhotoPath = "https://pbs.twimg.com/media/EtvfOFTWYAc3j1q.jpg",
+            RoleName = new Role { RoleID = 1, RoleName = "Lekarz" }
+        };
+
+    class DataItem
+    {
+        public string Name { get; set; }
+        public int Amount { get; set; }
+    }
+
+    DataItem[] paidVisits = new DataItem[] {
+    new DataItem
+    {
+    Name = "Opłacone",
+    Amount = 3
+    },
+    new DataItem
+    {
+    Name = "Nieopłacone",
+    Amount = 2
+    }};
 
     async Task<List<Appointment>> visitToAppointment(IEnumerable<Visit> visits)
     {
@@ -112,11 +170,20 @@
     async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Appointment> args)
     {
         await DialogService.OpenAsync<VisitDialog>(
-            "View Visit", 
+            "Wizyta", 
             new Dictionary<string, object> { { "appointment", args.Data } }
         );
 
         await scheduler.Reload();
     }
-    
+
+    async Task OnAccountSelect(User u)
+    {
+        await DialogService.OpenAsync<AccountDialog>(
+            "Konto",
+            new Dictionary<string, object> { { "account", u } }
+        );
+    }
+
+
 }
