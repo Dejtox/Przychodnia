@@ -1,4 +1,7 @@
-﻿@using Przychodnia.Shared
+﻿@using Przychodnia.Client.Components
+@using Przychodnia.Shared
+@using Przychodnia.Client.Models.Adaptors
+@inject DialogService DialogService
 
 @page "/past-visits"
 
@@ -31,6 +34,9 @@
                                                 <RadzenBadge BadgeStyle="@(visit.Paid ? BadgeStyle.Success : BadgeStyle.Danger)" IsPill=true Text="@(visit.Paid ? "Opłacono" : "Nie opłacono")" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-2 p-3">
+                                        <RadzenIcon Icon="info" IconStyle="IconStyle.Primary" @onclick="(args => OnVisitSelect(visit))"/>
                                     </div>
                                 </div>
                             </div>
@@ -149,5 +155,13 @@
     protected override void OnInitialized()
     {
         pastVisits = visits.Where(v => v.Date < DateTime.Now).ToList<Visit>();
+    }
+
+    async Task OnVisitSelect(Visit v)
+    {
+        await DialogService.OpenAsync<VisitDialog>(
+            "Wizyta", 
+            new Dictionary<string, object> { { "appointment", new Appointment { visit = v} } }
+        );
     }
 }
