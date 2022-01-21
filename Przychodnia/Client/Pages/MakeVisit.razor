@@ -1,7 +1,120 @@
 ﻿@page "/make-visit"
+@using Przychodnia.Client.Models
+@using Przychodnia.Shared
 
-<h3>MakeVisit</h3>
+<h3>Umów wizytę</h3>
+
+<RadzenTemplateForm Data="@visit" Submit="@((Visit args) => { Submit(args); })">
+    <RadzenFieldset>
+        <div class="row form-group">
+            <div class="col">
+                <RadzenLabel Text="Rodzaj wizyty"/>
+            </div>
+            <div class="col">
+                <RadzenDropDown @bind-Value="visit.Name" TValue="string" Placeholder="Wybierz" Data=@categories>
+
+                </RadzenDropDown>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col">
+                <RadzenLabel Text="Lekarz"/>
+            </div>
+            <div class="col">
+                <RadzenDropDown TValue="string" Placeholder="Wybierz" Data=@doctors TextProperty="Name" ValueProperty="ID">
+
+                </RadzenDropDown>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col">
+                <RadzenLabel Text="Dzień"/>
+            </div>
+            <div class="col">
+                <RadzenDatePicker @bind-Value=@dateDay DateFormat="d" Change=@OnChange/>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col">
+                <RadzenLabel Text="Godzina"/>
+            </div>
+            <div class="col">
+                <RadzenDropDown @bind-Value=@dateHour TValue="int" Placeholder="Wybierz" Data=@hours TextProperty="Text" ValueProperty="Value">
+
+                </RadzenDropDown>
+            </div>
+        </div>
+    </RadzenFieldset>
+    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zatwierdź" />
+</RadzenTemplateForm>
 
 @code {
+    Visit visit = new Visit();
+    DateTime? dateDay = DateTime.Today;
+    int dateHour;
 
+    string[] categories =
+            {
+            "Kanałowe",
+            "Wizyta kontrolna",
+            "Borowanko"
+        };
+
+    Hour[] hours =
+            {
+            new Hour
+            {
+                Text="14:00",
+                Value = 14
+            },
+            new Hour
+            {
+                Text="15:00",
+                Value = 15
+            },
+            new Hour
+            {
+                Text="16:00",
+                Value = 16
+            },
+            new Hour
+            {
+                Text="17:00",
+                Value = 17
+            },
+        };
+
+    User[] doctors =
+            {
+            new User
+            {
+                Name = "Darek",
+                Surname = "Daliborek"
+            },
+            new User
+            {
+                Name = "Marek",
+                Surname = "Mojżesz"
+            },
+            new User
+            {
+                Name = "Czarek",
+                Surname = "Czapla"
+            },
+        };
+
+    void OnChange(DateTime? value)
+    {
+
+    }
+
+    void Submit(Visit args)
+    {
+        if(dateDay != null)
+        {
+            DateTime temp = (DateTime)dateDay;
+            temp.AddHours(dateHour);
+            Console.WriteLine("Baza danych, wysłać maile i wyświetlić stronę wizyta stworzona");
+        }
+    }
 }
