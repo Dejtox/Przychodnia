@@ -57,6 +57,14 @@
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[3.14.2, )"
+            },
             "Syncfusion.Blazor.Grid": {
               "target": "Package",
               "version": "[19.4.0.40, )"
@@ -152,6 +160,14 @@
               "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools.DotNet": {
+              "target": "Package",
+              "version": "[2.1.0-preview1-final, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.1, )"
             },

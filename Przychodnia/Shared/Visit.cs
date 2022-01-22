@@ -16,9 +16,9 @@ namespace Przychodnia.Shared
 
         public bool Successful { get; set; }
 
-        //public User PatientName { get; set; }
+        public string PatientName { get; set; }
 
-        //public  User DoctorName { get; set; }
+        public string DoctorName { get; set; }
 
     }
 }

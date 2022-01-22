@@ -22,37 +22,37 @@ namespace Przychodnia.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Przychodnia.Shared.Role", b =>
+            modelBuilder.Entity("Przychodnia.Shared.Rang", b =>
                 {
-                    b.Property<int>("RoleID")
+                    b.Property<int>("RangID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RangID"), 1L, 1);
 
-                    b.Property<string>("RoleName")
+                    b.Property<string>("RangName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoleID");
+                    b.HasKey("RangID");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Rangs");
 
                     b.HasData(
                         new
                         {
-                            RoleID = 1,
-                            RoleName = "Admin"
+                            RangID = 1,
+                            RangName = "Admin"
                         },
                         new
                         {
-                            RoleID = 2,
-                            RoleName = "Doktor"
+                            RangID = 2,
+                            RangName = "Doktor"
                         },
                         new
                         {
-                            RoleID = 3,
-                            RoleName = "Pacjent"
+                            RangID = 3,
+                            RangName = "Pacjent"
                         });
                 });
 
@@ -64,14 +64,22 @@ namespace Przychodnia.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"), 1L, 1);
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoleID")
+                    b.Property<int?>("RangID")
                         .HasColumnType("int");
 
                     b.Property<string>("Surname")
@@ -79,7 +87,7 @@ namespace Przychodnia.Server.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RoleID");
+                    b.HasIndex("RangID");
 
                     b.ToTable("Users");
 
@@ -87,25 +95,31 @@ namespace Przychodnia.Server.Migrations
                         new
                         {
                             ID = 995213523765L,
+                            Email = "m.kowal@gmail.com",
                             Name = "Marcel",
+                            Password = "MarcelKowal1",
                             PhotoPath = "Images/Marcel.png",
-                            RoleID = 1,
+                            RangID = 1,
                             Surname = "Kowal"
                         },
                         new
                         {
                             ID = 99768496534L,
+                            Email = "w.tak@gmail.com",
                             Name = "Wiktoria",
+                            Password = "Wika123",
                             PhotoPath = "Images/Wiktoria.png",
-                            RoleID = 2,
+                            RangID = 2,
                             Surname = "Tak"
                         },
                         new
                         {
                             ID = 99574836547L,
+                            Email = "c.muza@gmail.com",
                             Name = "Cezary",
+                            Password = "Czarus14",
                             PhotoPath = "Images/Cezary.png",
-                            RoleID = 3,
+                            RangID = 3,
                             Surname = "Muza"
                         });
                 });
@@ -125,6 +139,10 @@ namespace Przychodnia.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
@@ -134,6 +152,10 @@ namespace Przychodnia.Server.Migrations
 
                     b.Property<bool>("Paid")
                         .HasColumnType("bit");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Successful")
                         .HasColumnType("bit");
@@ -148,9 +170,11 @@ namespace Przychodnia.Server.Migrations
                             VisitId = 1,
                             Date = new DateTime(2022, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Badanie Rozwojowe",
+                            DoctorName = "Cezary Ochlik",
                             Duration = 3,
                             Name = "Badanie",
                             Paid = true,
+                            PatientName = "Franek Kilimandżaro",
                             Successful = true
                         },
                         new
@@ -158,20 +182,22 @@ namespace Przychodnia.Server.Migrations
                             VisitId = 2,
                             Date = new DateTime(2022, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Badanie Rozwojowe1",
+                            DoctorName = "Wiktoria Stępa",
                             Duration = 4,
                             Name = "Badanie1",
                             Paid = true,
+                            PatientName = "Kamil Sufranek",
                             Successful = false
                         });
                 });
 
             modelBuilder.Entity("Przychodnia.Shared.User", b =>
                 {
-                    b.HasOne("Przychodnia.Shared.Role", "RoleName")
+                    b.HasOne("Przychodnia.Shared.Rang", "RangName")
                         .WithMany()
-                        .HasForeignKey("RoleID");
+                        .HasForeignKey("RangID");
 
-                    b.Navigation("RoleName");
+                    b.Navigation("RangName");
                 });
 #pragma warning restore 612, 618
         }

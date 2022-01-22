@@ -12,7 +12,7 @@ namespace Przychodnia.Server.Models
             
         }
 
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Rang> Rangs { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Visit> Visits { get; set; }
 
@@ -20,14 +20,14 @@ namespace Przychodnia.Server.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Role>().HasData(
-                new Role { RoleID = 1, RoleName = "Admin"}
+            modelBuilder.Entity<Rang>().HasData(
+                new Rang { RangID = 1, RangName = "Admin"}
             );
-            modelBuilder.Entity<Role>().HasData(
-                new Role { RoleID = 2, RoleName = "Doktor"}
+            modelBuilder.Entity<Rang>().HasData(
+                new Rang { RangID = 2, RangName = "Doktor"}
             );
-            modelBuilder.Entity<Role>().HasData(
-                new Role { RoleID = 3, RoleName = "Pacjent"}
+            modelBuilder.Entity<Rang>().HasData(
+                new Rang { RangID = 3, RangName = "Pacjent"}
             );
 
             modelBuilder.Entity<User>().HasData( new User 
@@ -35,8 +35,10 @@ namespace Przychodnia.Server.Models
                 Name = "Marcel",
                 Surname="Kowal", 
                 ID=995213523765,
-                RoleID=1,
-                PhotoPath="Images/Marcel.png"
+                RangID=1,
+                PhotoPath="Images/Marcel.png",
+                Email="m.kowal@gmail.com",
+                Password="MarcelKowal1"
             }
             );
             modelBuilder.Entity<User>().HasData( new User 
@@ -44,8 +46,10 @@ namespace Przychodnia.Server.Models
                 Name = "Wiktoria",
                 Surname="Tak", 
                 ID=99768496534,
-                RoleID=2,
-                PhotoPath="Images/Wiktoria.png"
+                RangID=2,
+                PhotoPath="Images/Wiktoria.png",
+                Email = "w.tak@gmail.com",
+                Password = "Wika123"
             }
             );
             modelBuilder.Entity<User>().HasData( new User 
@@ -53,8 +57,10 @@ namespace Przychodnia.Server.Models
                 Name = "Cezary",
                 Surname="Muza", 
                 ID=99574836547,
-                RoleID=3,
-                PhotoPath="Images/Cezary.png"
+                RangID=3,
+                PhotoPath="Images/Cezary.png",
+                Email = "c.muza@gmail.com",
+                Password = "Czarus14"
             }
             );
 
@@ -67,8 +73,8 @@ namespace Przychodnia.Server.Models
                 Duration=3,
                 Paid=true,
                 Successful=true,
-                //PatiientName=new User { Name="Cezary2", ID=3},
-                //DocctorName=new User { Name="Cezary3", ID=4},
+                PatientName= "Franek Kilimandżaro",
+                DoctorName = "Cezary Ochlik"
             }
             );
             modelBuilder.Entity<Visit>().HasData( new Visit  
@@ -80,9 +86,9 @@ namespace Przychodnia.Server.Models
                 Duration=4,
                 Paid=true,
                 Successful=false,
-                //PatiientName=new User { Name="Cezary", ID=1},
-                //DocctorName=new User { Name="Cezary1", ID=2},
-                
+                PatientName = "Kamil Sufranek",
+                DoctorName = "Wiktoria Stępa"
+
             }
             );
         }

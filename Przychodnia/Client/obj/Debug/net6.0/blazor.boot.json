@@ -23,12 +23,14 @@
       "Microsoft.Extensions.FileProviders.Abstractions.dll": "sha256-7PzvEcQvpK1c8tTX9VPI8AF+XrekqbAytNBQXJjvTvQ=",
       "Microsoft.Extensions.FileProviders.Physical.dll": "sha256-sXujvGMZDgBBZ9HqfcEq9XsM0pvwyhPt60NA9qLDzGI=",
       "Microsoft.Extensions.FileSystemGlobbing.dll": "sha256-viiXOG0fwhWobT0TQ1ZOJiZBdRvYRlWbDtjz+6d8sQI=",
+      "Microsoft.Extensions.Http.dll": "sha256-K5\/O91dt69IHKav69ftn+7DKPmnzkipTvwM4Sd4Zres=",
       "Microsoft.Extensions.Logging.dll": "sha256-GDZQCBtVHfrZZ6fL95lGoinLeUWLjQShLbfESwO7mrc=",
       "Microsoft.Extensions.Logging.Abstractions.dll": "sha256-1XXJ0VQ8pybOFNvf\/RA+k+pSfNRrsoMW2h9BItvFXVY=",
       "Microsoft.Extensions.Options.dll": "sha256-eGESyy9mRu8RcCGajAu4E8nxSmeB5nxiZkFPVaZ5Vl0=",
       "Microsoft.Extensions.Primitives.dll": "sha256-jOmoWSfsdQexH\/6QCA56gR1RMEqeix2iDDUBWbpAOQI=",
       "Microsoft.JSInterop.dll": "sha256-U4TlhQzx2DEFb2LgmELxAvWalkXk5Dx\/HsVDyQH8ubA=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-11MM537VpREUoEMIiXr2jsO5eqHCkixj9Zi1I4hLPOw=",
+      "Radzen.Blazor.dll": "sha256-o8ZiPObqIMH8pfSvlLEkrbrGVZKB1KN+mAss0HAweow=",
       "Syncfusion.Blazor.Buttons.dll": "sha256-oZn219gc4t4SN8YjAV7jbvrYc8ZASl\/UIIAHP2AIGUY=",
       "Syncfusion.Blazor.Calendars.dll": "sha256-c9qOz8fjKJDy1yB4z8BDR0rzghv465RgLrPGMk1qnBk=",
       "Syncfusion.Blazor.Core.dll": "sha256-2XwlXBzTNDt2pb5OnCt+r1pyhvZaZIAhQrLZswbo6dw=",
@@ -46,6 +48,7 @@
       "Syncfusion.Licensing.dll": "sha256-\/OXfSe1MOfujKe+kB7K\/0A2tb1xo8fwbHLFvMyG0LT0=",
       "Syncfusion.PdfExport.Net.dll": "sha256-BzN9KeMUha340s03amqj7L52H1SHAAWv9AKiGRVzTA8=",
       "System.IO.Pipelines.dll": "sha256-fpnawcAWgJ8i0JPJ9DhQ8XFDKYsTi6md2eRFNh\/bONA=",
+      "System.Linq.Dynamic.Core.dll": "sha256-+dlU8yi5zWnF9GeqOTl26t\/y5vllHc9O3mEwXdQjP7M=",
       "Microsoft.CSharp.dll": "sha256-G204dE5axR66hiRzw+nCGd4NhoW2pyGNAYxvjKjtbY0=",
       "Microsoft.VisualBasic.Core.dll": "sha256-jwW4\/Q\/7wz7Q2oAlGi4JWwPkJHhDDnumGSirhZNF3h4=",
       "Microsoft.VisualBasic.dll": "sha256-N4tachHLSjJd8OmDatjMSqds2Igm2jRL\/Ak9jmWxzZg=",
@@ -212,15 +215,15 @@
       "mscorlib.dll": "sha256-+5VU+MYaTQMTlRe9QKobEjWZWv6I9teAGdNndWSBqWE=",
       "netstandard.dll": "sha256-E5RFhGIaDH5QM6BEbFUuHU8U9wP6N6jbo5MCttzLOCM=",
       "System.Private.CoreLib.dll": "sha256-9NtEbYixyog7vUmeYXyyqzfBXUYl8wxoVQ26Ji7sNRg=",
-      "Przychodnia.Shared.dll": "sha256-L9ogaiZ1IQwYT+zIbqmmv6TTxcqYPr+5OPPtgV0EKWI=",
-      "Przychodnia.Client.dll": "sha256-B+39uT\/wpcGdcL9zl8AFnMLGb2LmYzi+oCWtUU18PsE="
+      "Przychodnia.Shared.dll": "sha256-xJnvA0YJ5UrnVWP+V3TmIlPMO\/1eWGvl4FOe0c+v074=",
+      "Przychodnia.Client.dll": "sha256-EVI85BMDRAzoSGGXFNEm31ux+p2umnfAIRBO5aO96Kc="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Przychodnia.Shared.pdb": "sha256-q1VEfpY7\/3E7ec4zt25B+JxC4GYiXFLGGRJZuqUQaCw=",
-      "Przychodnia.Client.pdb": "sha256-3on5FOHP6R7E6b\/QK5cbB81\/1cHSTSFuVCYHUVxRudc="
+      "Przychodnia.Shared.pdb": "sha256-YPILdWeMO4RwpyNjS\/\/rlg7Vd7y94\/E9yDU0IMI5qFI=",
+      "Przychodnia.Client.pdb": "sha256-OHmG4KJyx9ASwq5ikstGeSOIZ5QhAxcxt9BBaROYAX0="
     },
     "runtime": {
       "dotnet.6.0.1.gxbjk8vhiw.js": "sha256-awQsJ\/WxYhouHPuE+i3eJqjA4XClQlr2rD6nKvW80ww=",

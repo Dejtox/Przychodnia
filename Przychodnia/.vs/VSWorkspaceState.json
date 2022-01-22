@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Client"
+    "\\Client",
+    "\\Server",
+    "\\Shared"
   ],
-  "SelectedNode": "\\Client\\Przychodnia.Client.csproj",
+  "SelectedNode": "\\Client\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

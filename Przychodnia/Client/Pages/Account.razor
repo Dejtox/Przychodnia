@@ -12,7 +12,7 @@
                     <div>
                         <div>Imię i nazwisko</div>
                         <b>@($"{account.Name} {account.Surname}")</b>
-                        <b>@account.RoleName.RoleName</b>
+                        <b>@account.RangName.RangName</b>
                     </div>
                 </div>
             </RadzenCard>
@@ -43,6 +43,6 @@
             Name = "Sebastian",
             Surname = "Zellah",
             PhotoPath = "https://pbs.twimg.com/media/EtvfOFTWYAc3j1q.jpg",
-            RoleName = new Role { RoleID = 1, RoleName = "Lekarz" }
+            RangName = new Rang { RangID = 1, RangName = "Lekarz" }
         };
 }
