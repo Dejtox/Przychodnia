@@ -2,6 +2,9 @@
 @using Przychodnia.Client.Models
 @using Przychodnia.Shared
 
+@inject HttpClient http
+@inject NavigationManager uriHelper
+
 <h3>Umów wizytę</h3>
 
 <RadzenTemplateForm Data="@visit" Submit="@((Visit args) => { Submit(args); })">
@@ -108,12 +111,17 @@
 
     }
 
-    void Submit(Visit args)
+    async Task Submit(Visit args)
     {
         if(dateDay != null)
         {
             DateTime temp = (DateTime)dateDay;
             temp.AddHours(dateHour);
+
+            await http.PostAsJsonAsync("api/visits", visit);
+            uriHelper.NavigateTo("home");
+
+
             Console.WriteLine("Baza danych, wysłać maile i wyświetlić stronę wizyta stworzona");
         }
     }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Przychodnia.Shared
 {
-    public class Role
+    public class Rang
     {
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
+        public int RangID { get; set; }
+        public string RangName { get; set; }
     }
 }

@@ -57,6 +57,14 @@
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[3.14.2, )"
+            },
             "Syncfusion.Blazor.Grid": {
               "target": "Package",
               "version": "[19.4.0.40, )"

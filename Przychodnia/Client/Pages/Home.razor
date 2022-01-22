@@ -2,6 +2,7 @@
 @using Przychodnia.Shared
 @using Przychodnia.Client.Models.Adaptors
 @using Przychodnia.Client.Components
+@using Przychodnia.Client.Services
 @inject DialogService DialogService
 
 <h3>Strona Główna</h3>
@@ -16,7 +17,7 @@
                     <div>
                         <div>Imię i nazwisko</div>
                         <div><b>@($"{account.Name} {account.Surname}")</b></div>
-                        <div><b>@account.RoleName.RoleName</b></div>                        
+                        <div><b>@account.RangName.RangName</b></div>                        
                         
                     </div>
                 </div>
@@ -57,7 +58,7 @@
             Name = "Sebastian",
             Surname = "Zellah",
             PhotoPath = "https://pbs.twimg.com/media/EtvfOFTWYAc3j1q.jpg",
-            RoleName = new Role { RoleID = 1, RoleName = "Lekarz" }
+            RangName = new Rang { RangID = 1, RangName = "Lekarz" }
         };
 
     class DataItem
@@ -88,58 +89,70 @@
         return temp;
     }
 
-    Visit[] visits = new Visit[]
-                {
-        new Visit
+        /*Visit[] visits = new Visit[]
         {
+            new Visit
+            {
             VisitId = 1,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddHours(14),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 2,
-            Name = "Kanałowe",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddHours(21),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 3,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(2).AddHours(15),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 4,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-5).AddHours(17),
-            Duration = 30,
-            Paid = false,
-            Successful = false
+        Name = "Wizyta kontrolna",
+    Description = "Życie jest słabe i niefajne",
+    Date = DateTime.Today.AddHours(14),
+    Duration = 30,
+    Paid = false,
+    Successful = false
+            },
+            new Visit
+            {
+    VisitId = 2,
+    Name = "Kanałowe",
+    Description = "Życie jest słabe i niefajne",
+    Date = DateTime.Today.AddHours(21),
+    Duration = 30,
+    Paid = false,
+    Successful = false
+    },
+            new Visit
+            {
+    VisitId = 3,
+    Name = "Wizyta kontrolna",
+    Description = "Życie jest słabe i niefajne",
+    Date = DateTime.Today.AddDays(2).AddHours(15),
+    Duration = 30,
+    Paid = false,
+    Successful = false
+            },
+            new Visit
+    {
+    VisitId = 4,
+    Name = "Wizyta kontrolna",
+    Description = "Życie jest słabe i niefajne",
+    Date = DateTime.Today.AddDays(-5).AddHours(17),
+    Duration = 30,
+    Paid = false,
+    Successful = false
         },
         };
-
+    */
+    public List<Visit> visit { get; set; }
 
     List<Appointment> appointments;
 
+    [Inject]
+    public IVisitService VisitService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        visit = (await VisitService.GetVisits()).ToList();
+        foreach (Visit i in visit)
+        {
+            Console.WriteLine(i);
+        }
+        
+    }
 
     async Task OnLoadData(SchedulerLoadDataEventArgs args)
     {
-        // Get the appointments for between the Start and End
-        appointments = await visitToAppointment(visits);
+        appointments = await visitToAppointment(visit);
     }
 
     void OnSlotRender(SchedulerSlotRenderEventArgs args) 
