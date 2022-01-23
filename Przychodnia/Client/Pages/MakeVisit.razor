@@ -5,51 +5,58 @@
 @inject HttpClient http
 @inject NavigationManager uriHelper
 
-<h3>Umów wizytę</h3>
+<div class="d-flex justify-content-center">
+    <div style="padding: 50px 0px">
+        <RadzenCard>
+            <RadzenTemplateForm Data="@visit" Submit="@((Visit args) => { Submit(args); })">
+                <h3 class="mb-4 px-4 d-flex justify-content-center">Umów wizytę</h3>
+                <RadzenFieldset Style="border: none;">
+                    <div class="row form-group">
+                        <div class="col">
+                            <RadzenLabel Text="Rodzaj wizyty" />
+                        </div>
+                        <div class="col">
+                            <RadzenDropDown @bind-Value="visit.Name" TValue="string" Placeholder="Wybierz" Data=@categories>
 
-<RadzenTemplateForm Data="@visit" Submit="@((Visit args) => { Submit(args); })">
-    <RadzenFieldset>
-        <div class="row form-group">
-            <div class="col">
-                <RadzenLabel Text="Rodzaj wizyty"/>
-            </div>
-            <div class="col">
-                <RadzenDropDown @bind-Value="visit.Name" TValue="string" Placeholder="Wybierz" Data=@categories>
+                            </RadzenDropDown>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col">
+                            <RadzenLabel Text="Lekarz" />
+                        </div>
+                        <div class="col">
+                            <RadzenDropDown TValue="string" Placeholder="Wybierz" Data=@doctors TextProperty="Name" ValueProperty="ID">
 
-                </RadzenDropDown>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col">
-                <RadzenLabel Text="Lekarz"/>
-            </div>
-            <div class="col">
-                <RadzenDropDown TValue="string" Placeholder="Wybierz" Data=@doctors TextProperty="Name" ValueProperty="ID">
+                            </RadzenDropDown>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col">
+                            <RadzenLabel Text="Dzień" />
+                        </div>
+                        <div class="col">
+                            <RadzenDatePicker @bind-Value=@dateDay DateFormat="d" Change=@OnChange />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col">
+                            <RadzenLabel Text="Godzina" />
+                        </div>
+                        <div class="col">
+                            <RadzenDropDown @bind-Value=@dateHour TValue="int" Placeholder="Wybierz" Data=@hours TextProperty="Text" ValueProperty="Value">
 
-                </RadzenDropDown>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col">
-                <RadzenLabel Text="Dzień"/>
-            </div>
-            <div class="col">
-                <RadzenDatePicker @bind-Value=@dateDay DateFormat="d" Change=@OnChange/>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col">
-                <RadzenLabel Text="Godzina"/>
-            </div>
-            <div class="col">
-                <RadzenDropDown @bind-Value=@dateHour TValue="int" Placeholder="Wybierz" Data=@hours TextProperty="Text" ValueProperty="Value">
-
-                </RadzenDropDown>
-            </div>
-        </div>
-    </RadzenFieldset>
-    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zatwierdź" />
-</RadzenTemplateForm>
+                            </RadzenDropDown>
+                        </div>
+                    </div>
+                </RadzenFieldset>
+                <div class="mb-4 px-4 d-flex justify-content-center">
+                    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zatwierdź"/>
+                </div>
+            </RadzenTemplateForm>
+        </RadzenCard>
+    </div>
+</div>
 
 @code {
     Visit visit = new Visit();
@@ -57,14 +64,14 @@
     int dateHour;
 
     string[] categories =
-            {
+                        {
             "Kanałowe",
             "Wizyta kontrolna",
             "Borowanko"
         };
 
     Hour[] hours =
-            {
+                        {
             new Hour
             {
                 Text="14:00",
@@ -88,7 +95,7 @@
         };
 
     User[] doctors =
-            {
+                        {
             new User
             {
                 Name = "Darek",
@@ -113,7 +120,7 @@
 
     async Task Submit(Visit args)
     {
-        if(dateDay != null)
+        if (dateDay != null)
         {
             DateTime temp = (DateTime)dateDay;
             temp.AddHours(dateHour);
