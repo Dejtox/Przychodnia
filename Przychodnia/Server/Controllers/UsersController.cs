@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Przychodnia.Server.Models;
+using Przychodnia.Server.Services;
 using Przychodnia.Shared;
 
 namespace Przychodnia.Server.Controllers
@@ -9,10 +10,12 @@ namespace Przychodnia.Server.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository UserRepository;
+        private readonly IMailService MailService;
 
-        public UsersController(IUserRepository UserRepository)
+        public UsersController(IUserRepository UserRepository, IMailService MailService)
         {
             this.UserRepository = UserRepository;
+            this.MailService = MailService;
         }
 
         [HttpGet("{search}")]
@@ -71,6 +74,28 @@ namespace Przychodnia.Server.Controllers
             }
         }
 
+        ////nie działa xd
+        //[HttpGet]
+        //public async Task<ActionResult<User>> GetUserByMail([FromBody] string mail)
+        //{
+        //    try
+        //    {
+        //        var result = await UserRepository.GetUserByEmail(mail);
+
+        //        if (result == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError,
+        //            "Error retrieving data from the database");
+        //    }
+        //}
+
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User User)
         {
@@ -88,6 +113,7 @@ namespace Przychodnia.Server.Controllers
                 }
 
                 var createdUser = await UserRepository.AddUser(User);
+                await MailService.sendEmail(User.Email, "Założono konto", Services.MailService.getMessageBody(MessageTypes.CreatedAccount, $"{User.Name} {User.Surname}"));
 
                 return CreatedAtAction(nameof(GetUser),
                     new { id = createdUser.ID }, createdUser);

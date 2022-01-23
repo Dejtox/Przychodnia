@@ -1,0 +1,87 @@
+﻿@page "/register"
+@using Przychodnia.Client.Services
+@using System.Security.Cryptography
+@using System.Text
+@inject NavigationManager NavManager
+
+<h3>Zarejestruj się</h3>
+<RadzenTemplateForm Data="@newUser" Submit="@((User args) => { Submit(args); })">
+    <RadzenFieldset>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Imię" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Name style="width: 100%;" Name="Name" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Nazwisko" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Surname style="width: 100%;" Name="Surname" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Email" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Email style="width: 100%;" Name="Email" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Hasło" />
+            </div>
+            <div class="col-md-8">
+                <RadzenPassword  @bind-Value=@newUser.Password style="width: 100%;" Name="Password" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Zdjęcie profilowe" />
+            </div>
+            <div class="col-md-8">
+                <RadzenFileInput @bind-Value=@newUser.PhotoPath TValue="string" Class="w-100" 
+                Change=@(args => OnChange(args, "FileInput")) />
+            </div>
+        </div>
+    </RadzenFieldset>
+    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zaktualizuj" />
+</RadzenTemplateForm>
+@code {
+    User newUser = new User();
+
+    [Inject]
+    public IUserService UserService { get; set; }
+
+
+    void OnChange(object o, string s)
+    {
+
+    }
+
+    string encrypt(string password)
+    {
+        using(SHA256 cipher = SHA256.Create())
+        {
+            byte[] hash = cipher.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new StringBuilder();
+            foreach (byte b in hash)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+
+    void Submit(User u)
+    {
+        newUser.RangID = 3;
+        newUser.Password = encrypt(newUser.Password);
+        UserService.AddUser(newUser);
+        NavManager.NavigateTo("/");
+    }
+}

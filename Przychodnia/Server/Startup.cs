@@ -40,6 +40,8 @@ namespace Przychodnia.Server
                         {
                             app.UseDeveloperExceptionPage();
                             app.UseWebAssemblyDebugging();
+                            app.UseSwagger();
+                            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "my_book v1"));
                         }
                     else
                         {

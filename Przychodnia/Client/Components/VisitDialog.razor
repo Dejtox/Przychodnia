@@ -1,16 +1,26 @@
-﻿@using Przychodnia.Shared
+﻿@using Przychodnia.Client.Services
+@using Przychodnia.Shared
 @using Przychodnia.Client.Models.Adaptors
 @inject DialogService DialogService
+@inject Services.AppDataService appData
 
 <div class="row my-5">
         <div>
             <RadzenCard class="m-3">
                 <h3 class="h5">Wizyta</h3>
                 <div class="d-flex flex-row">
-                    <RadzenImage Path="data:image/jpeg;base64,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" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                    <RadzenImage Path="@user.PhotoPath" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                     <div>
+                    @if(appData.account.RangID == 3)
+                    {
                         <div>Lekarz</div>
-                        <b>Tutaj imię lekarza</b>
+                        <b>@model.DoctorName</b>
+                    }
+                    else
+                    {
+                        <div>Pacjent</div>
+                        <b>@model.PatientName</b>
+                    }
                         <div>Rodzaj wizyty</div>
                         <b>@model.Name</b>
                     </div>
@@ -36,7 +46,14 @@
         </div>
         <div class="row mb-4">
         <div class="col d-flex justify-content-center">
-        <RadzenButton Click=@(args => Close()) ButtonStyle="ButtonStyle.Danger" Text="Anuluj wizytę" />
+            @if(appData.account.RangID == 3 && DateTime.Today < model.Date)
+            {
+                <RadzenButton Click=@(args => CancelVisit()) ButtonStyle="ButtonStyle.Danger" Text="Anuluj wizytę" />
+            }
+            else if(DateTime.Today > model.Date)
+            {
+                <RadzenButton Click=@(args => FullfillVisit()) ButtonStyle="ButtonStyle.Success" Text="Potwierdź wizytę" />
+            }
            </div>
            </div>
 
@@ -45,16 +62,50 @@
 @code {
     [Parameter]
     public Appointment appointment { get; set; }
+    [Inject]
+    public IUserService UserService{ get; set; }
+    [Inject]
+    public IVisitService VisitService { get; set; }
 
     Visit model = new Visit();
 
-    protected override void OnParametersSet()
+    User user = new User();
+
+    protected override async Task OnParametersSetAsync()
     {
         model = appointment.visit;
+        var users = await UserService.GetUsers();
+        string name = appData.account.RangID == 3 ? model.PatientName : model.DoctorName;
+        user = users.Where(u => u.Name == name).First();
     }
 
-    void Close()
+
+    void CancelVisit()
     {
-        Console.WriteLine("Anulowano wizytę");
+        try
+        {
+            VisitService.DeleteVisit(model.VisitId);
+            StateHasChanged();
+            DialogService.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    async void FullfillVisit()
+    {
+        try
+        {
+            model.Successful = true;
+            await VisitService.UpdateVisit(model);
+            StateHasChanged();
+            DialogService.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }

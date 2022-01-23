@@ -1,6 +1,7 @@
 ﻿using Przychodnia.Shared;
 using System.Net.Http.Json;
 
+
 namespace Przychodnia.Client.Services
 {
     public class VisitService : IVisitService
@@ -14,17 +15,25 @@ namespace Przychodnia.Client.Services
 
         public async Task<IEnumerable<Visit>> GetVisits()
         {
+            Console.WriteLine(httpClient.BaseAddress);
             return await httpClient.GetFromJsonAsync<IEnumerable<Visit>>("api/visits");
         }
 
-        public Task<Visit> AddVisit(Visit Visit)
+        public async Task AddVisit(Visit Visit)
         {
-            throw new NotImplementedException();
+            try
+            {
+               var response = await httpClient.PostAsJsonAsync("api/visits", Visit);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("error >>>>>"+ex.Message);
+            }
         }
 
         public Task DeleteVisit(int VisitId)
         {
-            throw new NotImplementedException();
+            return httpClient.DeleteAsync($"api/visits/{VisitId}");
         }
 
         public Task<Visit> GetVisit(int VisitId)
@@ -46,9 +55,10 @@ namespace Przychodnia.Client.Services
             throw new NotImplementedException();
         }
 
-        public Task<Visit> UpdateVisit(Visit Visit)
+        public async Task<Visit> UpdateVisit(Visit Visit)
         {
-            throw new NotImplementedException();
+            await httpClient.PutAsJsonAsync<Visit>($"api/visits/{Visit.VisitId}",Visit);
+            return Visit;
         }
     }
 }

@@ -1,4 +1,13 @@
 ﻿@page "/"
+@using Przychodnia.Client.Services
+@using System.Text
+@using System.Security.Cryptography
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject NavigationManager NavManager
+@inject IUserService UserService
+@inject Services.AppDataService appData
+@inject NavigationManager NavManager
+
 
 <div class="d-flex justify-content-center">
     <div class="login-pane d-flex flex-column">
@@ -29,13 +38,44 @@
     string password = "";
 
 
-    void OnLogin(LoginArgs args, string name)
+
+    async void OnLogin(LoginArgs args, string name)
     {
-        Console.WriteLine($"{name} -> Username: {args.Username} and password: {args.Password}");
+        try
+        {
+            var users = await UserService.GetUsers();
+            User u = users.Where(u => u.Password == encrypt(args.Password) && u.Email == args.Username).First();
+            if (u != null)
+            {
+                appData.account = u;
+                Console.WriteLine(u.RangName.ToString());
+                NavManager.NavigateTo("/home");
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("niezalogowano");
+        }
+
+
+    }
+
+    string encrypt(string password)
+    {
+        using(SHA256 cipher = SHA256.Create())
+        {
+            byte[] hash = cipher.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new StringBuilder();
+            foreach (byte b in hash)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+            return builder.ToString();
+        }
     }
 
     void OnRegister()
     {
-        
+        NavManager.NavigateTo("/register");
     }
 }

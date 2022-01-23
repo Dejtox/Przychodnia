@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Przychodnia.Server.Services;
 
 namespace Przychodnia.Server.Controllers
 {
@@ -14,10 +15,14 @@ namespace Przychodnia.Server.Controllers
     public class VisitsController : ControllerBase
     {
         private readonly IVisitsRepository visitsRepository;
+        private readonly IMailService mailService;
+        private readonly IUserRepository userRepository;
 
-        public VisitsController (IVisitsRepository visitsRepository)
+        public VisitsController (IVisitsRepository visitsRepository, IMailService mailService, IUserRepository userRepository)
         {
             this.visitsRepository = visitsRepository;
+            this.mailService = mailService;
+            this.userRepository = userRepository;
         }
 
         [HttpGet("{search}")]
@@ -77,7 +82,7 @@ namespace Przychodnia.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Visit>> CreateVisit(Visit Visit)
+        public async Task<ActionResult> CreateVisit(Visit Visit)
         {
             try
             {
@@ -93,7 +98,10 @@ namespace Przychodnia.Server.Controllers
                 }
 
                 var createdVisit = await visitsRepository.AddVisit(Visit);
-
+                var doctorMail = (await userRepository.GetUsers()).Where(u => $"{u.Name} {u.Surname}" == Visit.DoctorName).First().Email;
+                var patientMail = (await userRepository.GetUsers()).Where(u => $"{u.Name} {u.Surname}" == Visit.PatientName).First().Email;
+                await mailService.sendEmail(doctorMail,"Nowa wizyta", MailService.getMessageBody(MessageTypes.NewVisitToDoctor, Visit.DoctorName));
+                await mailService.sendEmail(patientMail, "Utworzyłeś/łaś nową wizytę", MailService.getMessageBody(MessageTypes.NewVisitToPatient, Visit.PatientName));
                 return CreatedAtAction(nameof(GetVisit),
                     new { id = createdVisit.VisitId }, createdVisit);
             }

@@ -80,6 +80,8 @@ namespace Przychodnia.Server.Services
                     return $"Anulowano wizytę z {moreInfo}";
                 case MessageTypes.CancelVisitToPatient:
                     return $"Anulowano wizytę z {moreInfo}";
+                case MessageTypes.CreatedAccount:
+                    return $"Witaj {moreInfo}, jesteśmy szczśliwi że założyłeś u nas konto";
                 default:
                     return "";
             }
@@ -92,5 +94,6 @@ public enum MessageTypes
     NewVisitToDoctor,
     NewVisitToPatient,
     CancelVisitToDoctor,
-    CancelVisitToPatient
+    CancelVisitToPatient,
+    CreatedAccount
 }

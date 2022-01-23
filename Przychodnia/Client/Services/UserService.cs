@@ -14,12 +14,19 @@ namespace Przychodnia.Client.Services
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            return await httpClient.GetFromJsonAsync<IEnumerable<User>>("api/users");
+            IEnumerable<User> users =  await httpClient.GetFromJsonAsync<IEnumerable<User>>("api/users");          
+            foreach(User u in users)
+            {
+                if(u.RangID != null)
+                    u.RangName = Rang.getRang((int)u.RangID);
+            }
+            return users;
         }
 
-        public Task<User> AddUser(User User)
+        public async Task<User> AddUser(User User)
         {
-            throw new NotImplementedException();
+           var u = await httpClient.PostAsJsonAsync<User>("api/users", User);
+            return User;
         }
 
         public Task DeleteUser(int UserId)
@@ -32,9 +39,9 @@ namespace Przychodnia.Client.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> GetUserByEmail(string Email)
+        public async Task<User> GetUserByEmail(string Email)
         {
-            throw new NotImplementedException();
+            return await httpClient.GetFromJsonAsync<User>($"api/users/mail/{Email}");
         }
 
         public Task<IEnumerable<User>> Search(string Name, string Surname)
@@ -42,9 +49,10 @@ namespace Przychodnia.Client.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> UpdateUser(User User)
+        public async Task<User> UpdateUser(User User)
         {
-            throw new NotImplementedException();
+            await httpClient.PutAsJsonAsync<User>($"api/users{User.ID}",User);
+            return User;
         }
     }
 }

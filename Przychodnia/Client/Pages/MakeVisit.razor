@@ -1,11 +1,14 @@
 ﻿@page "/make-visit"
 @using Przychodnia.Client.Models
+@using Przychodnia.Client.Services
 @using Przychodnia.Shared
+@inject Services.AppDataService appData
+@inject NavigationManager NavManager
 
-@inject HttpClient http
-@inject NavigationManager uriHelper
 
-<h3>Umów wizytę</h3>
+@if (!finished)
+{
+   <h3>Umów wizytę</h3>
 
 <RadzenTemplateForm Data="@visit" Submit="@((Visit args) => { Submit(args); })">
     <RadzenFieldset>
@@ -24,7 +27,7 @@
                 <RadzenLabel Text="Lekarz"/>
             </div>
             <div class="col">
-                <RadzenDropDown TValue="string" Placeholder="Wybierz" Data=@doctors TextProperty="Name" ValueProperty="ID">
+                <RadzenDropDown Change="@(args =>OnDoctorChange((User)args))" TValue="User" Placeholder="Wybierz" Data=@doctors TextProperty="name" ValueProperty="user">
 
                 </RadzenDropDown>
             </div>
@@ -34,7 +37,7 @@
                 <RadzenLabel Text="Dzień"/>
             </div>
             <div class="col">
-                <RadzenDatePicker @bind-Value=@dateDay DateFormat="d" Change=@OnChange/>
+                <RadzenDatePicker Change="@(args => OnDayChange(args))" TValue="DateTime" DateFormat="d"/>
             </div>
         </div>
         <div class="row form-group">
@@ -42,19 +45,72 @@
                 <RadzenLabel Text="Godzina"/>
             </div>
             <div class="col">
-                <RadzenDropDown @bind-Value=@dateHour TValue="int" Placeholder="Wybierz" Data=@hours TextProperty="Text" ValueProperty="Value">
+                <RadzenDropDown Disabled=@(!enabledHourDropdown) @bind-Value=@dateHour TValue="int" Placeholder="Wybierz" Data=@hours TextProperty="Text" ValueProperty="Value">
 
                 </RadzenDropDown>
             </div>
         </div>
     </RadzenFieldset>
     <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zatwierdź" />
-</RadzenTemplateForm>
+    </RadzenTemplateForm>
+}
+else
+{
+                <RadzenCard class="m-3">
+                <h3 class="h5">Wizyta</h3>
+                <div class="d-flex flex-row">
+                    <div>
+
+                        <div>Lekarz</div>
+                        <b>@visit.DoctorName</b>
+
+                        <div>Pacjent</div>
+                        <b>@visit.PatientName</b>
+
+                        <div>Rodzaj wizyty</div>
+                        <b>@visit.Name</b>
+                    </div>
+                </div>
+            </RadzenCard>
+            <RadzenCard class="m-3">
+                <h3 class="h5">Informacje</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div>Numer wizyty</div>
+                        <b>@visit.VisitId</b>
+                        <div class="mt-3">Opis</div>
+                        <b>@visit.Description</b>
+                    </div>
+                    <div class="col-md-8">
+                        <div>Data</div>
+                        <b>@visit.Date</b>
+                        <div class="mt-3">Opłacona</div>
+                        <b>@(visit.Paid ? "Tak" : "Nie")</b>
+                    </div>
+                </div>
+            </RadzenCard>
+
+}
+
 
 @code {
     Visit visit = new Visit();
     DateTime? dateDay = DateTime.Today;
+    bool enabledHourDropdown = false;
+    bool finished = false;
+
     int dateHour;
+
+    [Inject]
+    public IVisitService VisitService { get; set; }
+    [Inject]
+    public IUserService UserService { get; set; }
+
+    class DropDownUser
+    {
+        public User user{ get; set; }
+        public string name {get { return $"{user.Name} {user.Surname}"; }}
+    }
 
     string[] categories =
             {
@@ -63,66 +119,121 @@
             "Borowanko"
         };
 
-    Hour[] hours =
-            {
-            new Hour
-            {
-                Text="14:00",
-                Value = 14
-            },
-            new Hour
-            {
-                Text="15:00",
-                Value = 15
-            },
-            new Hour
-            {
-                Text="16:00",
-                Value = 16
-            },
-            new Hour
-            {
-                Text="17:00",
-                Value = 17
-            },
-        };
-
-    User[] doctors =
-            {
-            new User
-            {
-                Name = "Darek",
-                Surname = "Daliborek"
-            },
-            new User
-            {
-                Name = "Marek",
-                Surname = "Mojżesz"
-            },
-            new User
-            {
-                Name = "Czarek",
-                Surname = "Czapla"
-            },
-        };
-
-    void OnChange(DateTime? value)
+    Hour[] hours = new Hour[]
     {
+        new Hour{Value=14,Text="14:00"}
+    };
+    //{
+    //    get
+    //    {
+    //        List<Hour> temp = new List<Hour>();
+    //        if (dateDay < DateTime.Today)
+    //        {
+    //            return null;
+    //        }
+    //        else if (dateDay == DateTime.Today)
+    //        {
+    //            DateTime now = DateTime.Now;
+    //            for (var i = new DateTime(now.Year, now.Month, now.Day, now.Hour + 1, 0, 0); i <= DateTime.Today.AddHours(18); i.AddHours(1))
+    //            {
+    //                temp.Add(new Hour() { Text = i.ToString("HH:mm"), Value = i.Hour });
+    //            }
+    //        }
+    //        else
+    //        {
+    //            for (var i = DateTime.Today.AddHours(10); i <= DateTime.Today.AddHours(18); i.AddHours(1))
+    //            {
+    //                temp.Add(new Hour() { Text = i.ToString("HH:mm"), Value = i.Hour });
+    //            }
+    //        }
+    //        temp.RemoveAll(h => visits.Where(v => v.Name == visit.Name && h.Value == visit.Date.Hour && visit.Date.ToString("MM/dd/yyyy") == v.Date.ToString("MM/dd/yyyy")).Any());
+    //        return temp.ToArray();
+    //    }
+    //}
 
+    DropDownUser[] doctors;
+    Visit[] visits;
+
+    void CalculateHours()
+    {
+        List<Hour> temp = new List<Hour>();
+        if (dateDay < DateTime.Today)
+        {
+            enabledHourDropdown = false;
+        }
+        else if (dateDay == DateTime.Today)
+        {
+            DateTime now = DateTime.Now;
+            for (int i = DateTime.Now.Hour+1; i <= 18; i++)
+            {
+                temp.Add(new Hour() { Text = $"{i}:00", Value = i });
+            }
+            if (temp.Count() == 0)
+            {
+                enabledHourDropdown = false;
+            }
+            else{
+                enabledHourDropdown = true;
+            }
+        }
+        else
+        {
+            for (int i = 10; i <= 18; i++)
+            {
+                temp.Add(new Hour() { Text = $"{i}:00", Value = i });
+            }
+            enabledHourDropdown = true;
+        }
+        temp.Where(h => !visits.Where(v => v.DoctorName == visit.DoctorName && h.Value == visit.Date.Hour && visit.Date == v.Date).Any());
+        hours = temp.ToArray();
     }
+
+    void OnDayChange(DateTime? value)
+    {
+        dateDay = value;
+        CalculateHours();
+    }
+
+    void OnDoctorChange(User doctor)
+    {
+        visit.DoctorName = $"{doctor.Name} {doctor.Surname}";
+        CalculateHours();
+    }
+
 
     async Task Submit(Visit args)
     {
         if(dateDay != null)
         {
+            visit.PatientName = $"{appData.account.Name} {appData.account.Surname}";
             DateTime temp = (DateTime)dateDay;
-            temp.AddHours(dateHour);
-
-            await http.PostAsJsonAsync("api/visits", visit);
-            uriHelper.NavigateTo("home");
-
-
-            Console.WriteLine("Baza danych, wysłać maile i wyświetlić stronę wizyta stworzona");
+            visit.Date = temp.AddHours(dateHour);
+            visit.Duration = 30;
+            visit.Paid = false;
+            visit.Successful = false;
+            visit.Description = "";
+            await VisitService.AddVisit(visit);
+            finished = true;
+            StateHasChanged();
         }
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (appData.isLoggedIn)
+        {
+            var users = await UserService.GetUsers();
+            List<DropDownUser> du = new List<DropDownUser>();
+            foreach(User u in users.Where(u => u.RangID == 2))
+            {
+                du.Add(new DropDownUser() { user = u });
+            }
+            doctors = du.ToArray();
+        }
+        else
+        {
+            NavManager.NavigateTo("/");
+        }
+    }
+
 }

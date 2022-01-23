@@ -1,14 +1,20 @@
 ﻿@using Przychodnia.Client.Components
+@using Przychodnia.Client.Services
 @using Przychodnia.Shared
 @using Przychodnia.Client.Models.Adaptors
 @inject DialogService DialogService
+@inject Services.AppDataService appData
+@inject NavigationManager NavManager
+
 
 @page "/past-visits"
 
 <h3>Historia wizyt</h3>
 
-<RadzenCard>
-    <RadzenDataList WrapItems="true" AllowPaging="true" Data="@pastVisits" TItem="Visit" PageSize="5" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+@if (pastVisits != null && pastVisits.Count() > 0)
+{
+    <RadzenCard>
+        <RadzenDataList WrapItems="true" AllowPaging="true" Data="@pastVisits" TItem="Visit" PageSize="5" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
         <Template Context="visit">
                         <RadzenCard Style="width: 100%; padding: 0; overflow: hidden;">
                             <div class="container">
@@ -43,118 +49,41 @@
                         </RadzenCard>
                     </Template>
     </RadzenDataList>
-</RadzenCard>
+    </RadzenCard>
+}
+else
+{
+    <h1>Ojojoj, ależ tu pusto :(, może trzeba się wybrać do gabinetu?</h1>
+}
 
 @code {
     List<Visit> pastVisits;
 
-    Visit[] visits = new Visit[]
-                {
-        new Visit
-        {
-            VisitId = 1,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddHours(14),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 2,
-            Name = "Kanałowe",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddHours(-21),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 3,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-2).AddHours(15),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 4,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-5).AddHours(17),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 3,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-2).AddHours(15),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 4,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-5).AddHours(17),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 3,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-2).AddHours(15),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 4,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-5).AddHours(17),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 3,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-2).AddHours(15),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        new Visit
-        {
-            VisitId = 4,
-            Name = "Wizyta kontrolna",
-            Description = "Życie jest słabe i niefajne",
-            Date = DateTime.Today.AddDays(-5).AddHours(17),
-            Duration = 30,
-            Paid = false,
-            Successful = false
-        },
-        };
 
-    protected override void OnInitialized()
+    [Inject]
+    public IVisitService VisitService { get; set; }
+
+    protected override async void OnInitialized()
     {
+        if (appData.isLoggedIn)
+        {
+        var visits = await VisitService.GetVisits();
         pastVisits = visits.Where(v => v.Date < DateTime.Now).ToList<Visit>();
+        if (appData.account.RangID == 3)
+        {
+            pastVisits = pastVisits.Where(v => v.PatientName == appData.account.ToString()).ToList();
+        }
+        else
+        {
+            pastVisits = pastVisits.Where(v => v.DoctorName == appData.account.ToString()).ToList();     
+        }
+        StateHasChanged();
+        }
+        else
+        {
+            NavManager.NavigateTo("/");
+        }
+        
     }
 
     async Task OnVisitSelect(Visit v)

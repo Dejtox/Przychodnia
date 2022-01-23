@@ -1,11 +1,22 @@
-﻿<RadzenCard Style="min-width: 200px;">
+﻿@using Przychodnia.Client.Services
+@inject AppDataService appData
+
+<RadzenCard Style="min-width: 200px;">
     <RadzenMenu>
             <RadzenMenuItem Text="Strona główna" Icon="home" Path="home" >
             </RadzenMenuItem>
+            @if(appData.account.RangID == 3)
+        {
             <RadzenMenuItem Text="Wizyty" Icon="">
                 <RadzenMenuItem Text="Umów Wizytę" Path="make-visit" Icon="medication"></RadzenMenuItem>
                 <RadzenMenuItem Text="Historia wizyt" Path="past-visits" Icon="history"></RadzenMenuItem>
             </RadzenMenuItem>
+        }
+        else
+        {
+            <RadzenMenuItem Text="Historia wizyt" Path="past-visits" Icon="history"></RadzenMenuItem>
+        }
+        
             <RadzenMenuItem Text="Opłaty" Icon="payment" Path="crm-dashboard">
             </RadzenMenuItem>
     </RadzenMenu>

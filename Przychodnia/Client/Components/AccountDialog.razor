@@ -1,4 +1,5 @@
 ﻿@using Przychodnia.Shared
+@using Przychodnia.Client.Services
 @inject DialogService DialogService
 
 
@@ -37,6 +38,10 @@
     [Parameter]
     public User account { get; set; }
 
+    [Inject]
+    public IUserService UserService { get; set; }
+
+
     User edditedAccount;
 
     protected override void OnParametersSet()
@@ -59,11 +64,12 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    void Submit(User arg)
+    async void Submit(User arg)
     {
         account.Name = edditedAccount.Name;
         account.Surname = edditedAccount.Surname;
         account.PhotoPath = edditedAccount.PhotoPath;
+        await UserService.UpdateUser(account);
         DialogService.Close();
     }
 }
