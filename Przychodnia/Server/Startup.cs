@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Przychodnia.Server.Models;
+using Przychodnia.Server.Services;
 
 namespace Przychodnia.Server
 {
@@ -28,6 +29,7 @@ namespace Przychodnia.Server
                     services.AddControllers();
                     services.AddRazorPages();
 
+                services.AddScoped<IMailService, MailService>();
                 services.AddScoped<IVisitsRepository, VisitsRepository>();
                 services.AddScoped<IUserRepository, UserRepository>();
         }
