@@ -4,7 +4,6 @@ using Przychodnia.Client;
 using Syncfusion.Blazor;
 using Radzen;
 using Przychodnia.Client.Services;
-using Blazored.SessionStorage;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -22,9 +21,7 @@ builder.Services.AddHttpClient<IUserService, UserService>(client1 =>
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
-builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddSingleton<AppDataService>();
 builder.Services.AddScoped<VisitService>();
 builder.Services.AddScoped<UserService>();
-builder.Services.AddSwaggerGen();
 await builder.Build().RunAsync();

@@ -6,7 +6,8 @@ namespace Przychodnia.Server.Services
     {
         Task<bool> findAttachment(string attachmentName);
         Task<IMailFolder> getFolder(string folderName);
-        void test();
         Task sendEmail(string recivingMail, string subject, string body);
+
+        List<string> allAttachmentNames();
     }
 }

@@ -24,10 +24,20 @@
                                     </div>
                                     <div class="col-lg-7 p-3">
                                         <div class="row d-flex">
-                                            <div class="col-md-6 col-lg-2">
+                                    @if(appData.account.RangID == 3){
+                                                <div class="col-md-6 col-lg-2">
                                                 <h5 class="mb-0">Lekarz</h5>
-                                                <p class="mb-sm-2 mb-lg-0">Tu imię lekarza</p>
+                                                <p class="mb-sm-2 mb-lg-0">@visit.DoctorName</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-6 col-lg-2">
+                                                <h5 class="mb-0">Pacjent</h5>
+                                                <p class="mb-sm-2 mb-lg-0">@visit.PatientName</p>
                                             </div>
+                                    }
+
                                             <div class="col-md-6 col-lg-2">
                                                 <h5 class="mb-0">Godzina</h5>
                                                 <p class="mb-sm-2 mb-lg-0">@(visit.Date.ToString("HH:mm"))</p>

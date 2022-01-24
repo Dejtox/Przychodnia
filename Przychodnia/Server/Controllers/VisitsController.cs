@@ -51,7 +51,20 @@ namespace Przychodnia.Server.Controllers
         {
             try
             {
-                return Ok(await visitsRepository.GetVisits());
+                IEnumerable<Visit> visits = await visitsRepository.GetVisits();
+                var attachments = mailService.allAttachmentNames();
+                foreach(Visit v in visits)
+                {
+                    if (!v.Paid)
+                    {
+                        if(attachments.Contains(v.InvoiceNumber()+".txt"))
+                        {
+                            v.Paid = true;
+                            await visitsRepository.UpdateVisit(v);
+                        }
+                    }
+                }
+                return Ok(visits);
             }
             catch (Exception)
             {
@@ -91,11 +104,11 @@ namespace Przychodnia.Server.Controllers
 
                 var emp = await visitsRepository.GetVisitByPatientName(Visit.PatientName);
 
-                if (emp != null)
+                /*if (emp != null)
                 {
                     ModelState.AddModelError("Email", "Visit email already in use");
                     return BadRequest(ModelState);
-                }
+                }*/
 
                 var createdVisit = await visitsRepository.AddVisit(Visit);
                 var doctorMail = (await userRepository.GetUsers()).Where(u => $"{u.Name} {u.Surname}" == Visit.DoctorName).First().Email;

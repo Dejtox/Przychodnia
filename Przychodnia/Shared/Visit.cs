@@ -20,5 +20,12 @@ namespace Przychodnia.Shared
 
         public string DoctorName { get; set; }
 
+        public string InvoiceNumber () {
+                string prefix = "FR";
+                string sufix = VisitId.ToString();
+                string infix = new string('0', 10 - (sufix.Length + prefix.Length));
+                return prefix + infix + sufix;
+            } 
+
     }
 }

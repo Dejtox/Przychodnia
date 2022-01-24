@@ -37,7 +37,7 @@
                 <RadzenLabel Text="Dzień"/>
             </div>
             <div class="col">
-                <RadzenDatePicker Change="@(args => OnDayChange(args))" TValue="DateTime" DateFormat="d"/>
+                <RadzenDatePicker Value=@dateDay Change="@(args => OnDayChange(args))" TValue="DateTime" DateFormat="d"/>
             </div>
         </div>
         <div class="row form-group">
@@ -86,6 +86,8 @@ else
                         <b>@visit.Date</b>
                         <div class="mt-3">Opłacona</div>
                         <b>@(visit.Paid ? "Tak" : "Nie")</b>
+                        <div class="mt-3">Faktura</div>
+                        <b>@visit.InvoiceNumber()</b>
                     </div>
                 </div>
             </RadzenCard>

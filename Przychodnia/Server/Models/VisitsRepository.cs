@@ -14,10 +14,9 @@ namespace Przychodnia.Server.Models
         private readonly AppDb appDb;
         private readonly IMailService mailService;
 
-        public VisitsRepository(AppDb appDb, IMailService mailService)
+        public VisitsRepository(AppDb appDb)
         {
             this.appDb = appDb;
-            this.mailService = mailService;
         }
 
         public async Task<Visit> AddVisit(Visit visit)
@@ -25,7 +24,6 @@ namespace Przychodnia.Server.Models
 
             var result = await appDb.Visits.AddAsync(visit);
             await appDb.SaveChangesAsync();
-            mailService.test();
             return result.Entity;
         }
 
@@ -60,7 +58,6 @@ namespace Przychodnia.Server.Models
 
         public async  Task<IEnumerable<Visit>> GetVisits()
         {
-            await mailService.sendEmail("s.zellah10@gmail.com", "jest czwarta", "no jest czwarta, true");
             return await appDb.Visits.ToListAsync();
         }
 

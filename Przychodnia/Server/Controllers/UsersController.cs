@@ -111,7 +111,7 @@ namespace Przychodnia.Server.Controllers
                     ModelState.AddModelError("Email", "User email already in use");
                     return BadRequest(ModelState);
                 }
-
+                User.RangName = null;
                 var createdUser = await UserRepository.AddUser(User);
                 await MailService.sendEmail(User.Email, "Założono konto", Services.MailService.getMessageBody(MessageTypes.CreatedAccount, $"{User.Name} {User.Surname}"));
 

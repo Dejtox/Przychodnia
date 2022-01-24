@@ -79,6 +79,7 @@
 
     void Submit(User u)
     {
+        newUser.RangName = Rang.getRang(3);
         newUser.RangID = 3;
         newUser.Password = encrypt(newUser.Password);
         UserService.AddUser(newUser);
