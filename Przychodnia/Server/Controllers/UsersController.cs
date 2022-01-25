@@ -74,28 +74,6 @@ namespace Przychodnia.Server.Controllers
             }
         }
 
-        ////nie działa xd
-        //[HttpGet]
-        //public async Task<ActionResult<User>> GetUserByMail([FromBody] string mail)
-        //{
-        //    try
-        //    {
-        //        var result = await UserRepository.GetUserByEmail(mail);
-
-        //        if (result == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        return result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //            "Error retrieving data from the database");
-        //    }
-        //}
-
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User User)
         {

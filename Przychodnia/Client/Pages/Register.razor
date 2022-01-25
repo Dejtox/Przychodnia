@@ -3,6 +3,7 @@
 @using System.Security.Cryptography
 @using System.Text
 @inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
 
 <h3>Zarejestruj się</h3>
 <RadzenTemplateForm Data="@newUser" Submit="@((User args) => { Submit(args); })">
@@ -48,14 +49,26 @@
                 Change=@(args => OnChange(args, "FileInput")) />
             </div>
         </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenCheckBox @bind-Value=@checkBox1Value  Name="Agreement" TValue="bool"/>
+            </div>
+            <div class="col-md-8">
+                <p>
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).
+                </p>
+            </div>
+        </div>
     </RadzenFieldset>
-    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zaktualizuj" />
+    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zarejestruj" />
 </RadzenTemplateForm>
+
 @code {
     User newUser = new User();
 
     [Inject]
     public IUserService UserService { get; set; }
+    public bool checkBox1Value = false;
 
 
     void OnChange(object o, string s)
@@ -77,12 +90,54 @@
         }
     }
 
-    void Submit(User u)
+    async void Submit(User u)
     {
-        newUser.RangName = Rang.getRang(3);
-        newUser.RangID = 3;
-        newUser.Password = encrypt(newUser.Password);
-        UserService.AddUser(newUser);
-        NavManager.NavigateTo("/");
+        if(checkBox1Value)
+        {
+            if (!String.IsNullOrEmpty(newUser.Email))
+            {
+                if (!String.IsNullOrEmpty(newUser.Password))
+                {
+                    if (!String.IsNullOrEmpty(newUser.PhotoPath))
+                    {
+                        if (!String.IsNullOrEmpty(newUser.Name))
+                        {
+                            if (!String.IsNullOrEmpty(newUser.Surname))
+                            {
+                            newUser.RangName = Rang.getRang(3);
+                            newUser.RangID = 3;
+                            newUser.Password = encrypt(newUser.Password);
+                            UserService.AddUser(newUser);
+                            NavManager.NavigateTo("/");
+                            }
+                            else
+                            {
+                                await JsRuntime.InvokeVoidAsync("alert", "Nazwisko jest puste");
+                            }
+                        }
+                        else
+                        {
+                            await JsRuntime.InvokeVoidAsync("alert", "Imię jest puste");
+                        }
+                    }
+                    else
+                    {
+                        await JsRuntime.InvokeVoidAsync("alert", "Brak zdjęcia");
+                    }
+                }
+                else
+                {
+                    await JsRuntime.InvokeVoidAsync("alert", "Hasło jest puste");
+                }
+            }
+            else
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "Email jest pusty");
+            }
+        }
+        else
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Zgoda RODO nie zatwierdzona");
+        }
     }
 }

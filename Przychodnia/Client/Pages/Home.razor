@@ -27,7 +27,7 @@
                 </div>
                 <RadzenButton Click=@(args => OnAccountSelect(appData.account)) Text="Aktualizuj Informacje" Icon="account_box" ButtonStyle="ButtonStyle.Secondary" />
             </RadzenCard>
-            @if(paidVisits!=null && paidVisits.Count()>0){
+            @if(paidVisits!=null && paidVisits[0].Amount + paidVisits[1].Amount > 0 ){
             <RadzenCard class="m-3">
                 <h3 class="h5">Opłacone wizyty</h3>
                 <div class="row">
