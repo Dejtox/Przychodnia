@@ -52,14 +52,14 @@
         </div>
         <div class="row mb-4">
         <div class="col d-flex justify-content-center">
-            @if(appData.account.RangID == 3 )
+            @if(appData.account.RangID == 3 && DateTime.Today < model.Date )
             {
                 <RadzenButton Click=@(args => CancelVisit()) ButtonStyle="ButtonStyle.Danger" Text="Anuluj wizytę" />
             }
-            else if (DateTime.Today < model.Date){
+            else if (DateTime.Today >= model.Date){
                 <p>Nie można anulować wisyty w dniu jej wystąpienia.</p>
             }
-            else if(DateTime.Today > model.Date)
+            else if(DateTime.Today.AddDays(1) > model.Date)
             {
                 <RadzenButton Click=@(args => FullfillVisit()) ButtonStyle="ButtonStyle.Success" Text="Potwierdź wizytę" />
             }
@@ -97,6 +97,7 @@
             VisitService.DeleteVisit(model.VisitId);
             appData.visits = appData.visits.Where(v => v.VisitId != model.VisitId).ToList();
             StateHasChanged();
+            appData.CallRequestRefresh();
             DialogService.Close();
         }
         catch(Exception e)

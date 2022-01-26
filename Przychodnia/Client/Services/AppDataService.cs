@@ -9,5 +9,10 @@ namespace Przychodnia.Client.Services
         public List<Visit> visits { get; set; }
 
         public bool isLoggedIn { get { return account != null; } }
+        public event Action RefreshRequested;
+        public void CallRequestRefresh()
+        {
+            RefreshRequested?.Invoke();
+        }
     }
 }

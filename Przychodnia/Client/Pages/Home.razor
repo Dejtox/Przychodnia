@@ -28,7 +28,7 @@
                 <RadzenButton Click=@(args => OnAccountSelect(appData.account)) Text="Aktualizuj Informacje" Icon="account_box" ButtonStyle="ButtonStyle.Secondary" />
             </RadzenCard>
             @if(paidVisits!=null && paidVisits[0].Amount + paidVisits[1].Amount > 0 ){
-            <RadzenCard class="m-3">
+            <RadzenCard class="m-3 graph">
                 <h3 class="h5">Opłacone wizyty</h3>
                 <div class="row">
                 <RadzenChart>
@@ -89,7 +89,7 @@
         return temp;
     }
 
-    public List<Visit> visits = new List<Visit>();
+    public List<Visit> visits = new List<Visit>() { new Visit()};
 
     List<Appointment> appointments = new List<Appointment>();
 
@@ -106,6 +106,7 @@
             paidVisits[0].Amount = visits.Where(v => v.Paid).Count();
             paidVisits[1].Amount = visits.Count() - paidVisits[0].Amount;
             StateHasChanged();
+            appData.RefreshRequested += RefreshMe;
         }
         else
         {
@@ -113,10 +114,16 @@
         }
     }
 
-    //async Task OnLoadData(SchedulerLoadDataEventArgs args)
-    //{
-    //    appointments = await visitToAppointment(appData.visits);
-    //}
+    async void RefreshMe()
+    {
+        appointments = await visitToAppointment(appData.visits);
+        StateHasChanged();
+    }
+
+    async Task OnLoadData(SchedulerLoadDataEventArgs args)
+    {
+        appointments = await visitToAppointment(appData.visits);
+    }
 
     void OnSlotRender(SchedulerSlotRenderEventArgs args) 
     {
