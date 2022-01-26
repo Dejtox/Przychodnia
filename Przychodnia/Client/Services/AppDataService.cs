@@ -6,6 +6,8 @@ namespace Przychodnia.Client.Services
     {
         public User account { get; set; }
 
+        public List<Visit> visits { get; set; }
+
         public bool isLoggedIn { get { return account != null; } }
     }
 }

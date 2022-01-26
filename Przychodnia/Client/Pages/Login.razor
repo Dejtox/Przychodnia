@@ -6,6 +6,8 @@
 @inject IUserService UserService
 @inject Services.AppDataService appData
 @inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
+
 
 
 <div class="d-flex justify-content-center">
@@ -15,7 +17,7 @@
                 <h2 class="mb-4">Zaloguj się</h2>
                 <RadzenTemplateForm Data=@("Localization")>
                 <RadzenLogin AllowRegister="true" AllowResetPassword="false"
-                                LoginText="Zaloguj" UserText="Login" PasswordText="Hasło"
+                                LoginText="Zaloguj" UserText="Email" PasswordText="Hasło"
                                 UserRequired="Login jest wymagany"
                                 PasswordRequired="Hasło jest wymagane"
                                 RegisterText="Rejestracja"
@@ -53,7 +55,7 @@
         }
         catch(Exception e)
         {
-            Console.WriteLine("niezalogowano");
+            await JsRuntime.InvokeVoidAsync("alert", "Email bądź hasło są błędne");
         }
 
 

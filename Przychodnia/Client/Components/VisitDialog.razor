@@ -41,14 +41,23 @@
                         <div class="mt-3">Opłacona</div>
                         <b>@(model.Paid ? "Tak" : "Nie")</b>
                     </div>
+                    <div class="col-md-8">
+                        <div>Numer faktury</div>
+                        <b>@model.InvoiceNumber()</b>
+                        <div class="mt-3">Opłacona</div>
+                        <b>@(model.Paid ? "Tak" : "Nie")</b>
+                    </div>
                 </div>
             </RadzenCard>
         </div>
         <div class="row mb-4">
         <div class="col d-flex justify-content-center">
-            @if(appData.account.RangID == 3 && DateTime.Today < model.Date)
+            @if(appData.account.RangID == 3 )
             {
                 <RadzenButton Click=@(args => CancelVisit()) ButtonStyle="ButtonStyle.Danger" Text="Anuluj wizytę" />
+            }
+            else if (DateTime.Today < model.Date){
+                <p>Nie można anulować wisyty w dniu jej wystąpienia.</p>
             }
             else if(DateTime.Today > model.Date)
             {
@@ -75,8 +84,9 @@
     {
         model = appointment.visit;
         var users = await UserService.GetUsers();
-        string name = appData.account.RangID == 3 ? model.PatientName : model.DoctorName;
-        user = users.Where(u => u.Name == name).First();
+        string name = appData.account.RangID == 3 ? model.DoctorName : model.PatientName;
+        user = users.Where(u => u.ToString() == name).ToList().First();
+        StateHasChanged();
     }
 
 
@@ -85,6 +95,7 @@
         try
         {
             VisitService.DeleteVisit(model.VisitId);
+            appData.visits = appData.visits.Where(v => v.VisitId != model.VisitId).ToList();
             StateHasChanged();
             DialogService.Close();
         }

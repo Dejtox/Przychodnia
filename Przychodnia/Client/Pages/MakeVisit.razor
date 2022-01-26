@@ -4,6 +4,7 @@
 @using Przychodnia.Shared
 @inject Services.AppDataService appData
 @inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
 
 
 @if (!finished)
@@ -101,7 +102,7 @@ else
     bool enabledHourDropdown = false;
     bool finished = false;
 
-    int dateHour;
+    int dateHour = -1;
 
     [Inject]
     public IVisitService VisitService { get; set; }
@@ -207,16 +208,44 @@ else
     {
         if(dateDay != null)
         {
-            visit.PatientName = $"{appData.account.Name} {appData.account.Surname}";
-            DateTime temp = (DateTime)dateDay;
-            visit.Date = temp.AddHours(dateHour);
-            visit.Duration = 30;
-            visit.Paid = false;
-            visit.Successful = false;
-            visit.Description = "";
-            await VisitService.AddVisit(visit);
-            finished = true;
-            StateHasChanged();
+            if (!String.IsNullOrEmpty(visit.DoctorName))
+            {
+                if (dateDay >= DateTime.Now)
+                {
+                    if (dateHour != -1)
+                    {
+                      if (!String.IsNullOrEmpty(visit.Name))
+                        {
+                            visit.PatientName = $"{appData.account.Name} {appData.account.Surname}";
+                            DateTime temp = (DateTime)dateDay;
+                            visit.Date = temp.AddHours(dateHour);
+                            visit.Duration = 30;
+                            visit.Paid = false;
+                            visit.Successful = false;
+                            visit.Description = "";
+                            await VisitService.AddVisit(visit);
+                            finished = true;
+                            StateHasChanged();
+                        }
+                        else
+                        {
+                            await JsRuntime.InvokeVoidAsync("alert", "Rodzaj wizyty nie został wybrany");
+                        }
+                    }
+                    else
+                    {
+                        await JsRuntime.InvokeVoidAsync("alert", "Za wczesna godzina");
+                    }
+                }
+                else
+                {
+                    await JsRuntime.InvokeVoidAsync("alert", "Za wczesna data");
+                }
+            }
+            else
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "Nie wybrano doktora");
+            }
         }
     }
 
