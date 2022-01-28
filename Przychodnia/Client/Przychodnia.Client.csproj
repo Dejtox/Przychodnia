@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="Radzen.Blazor" Version="3.14.2" />
+    <PackageReference Include="Radzen.Blazor" Version="3.14.6" />
     <PackageReference Include="Syncfusion.Blazor.Grid" Version="19.4.0.40" />
   </ItemGroup>
 

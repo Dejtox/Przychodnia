@@ -21,4 +21,7 @@ builder.Services.AddHttpClient<IUserService, UserService>(client1 =>
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddSingleton<AppDataService>();
+builder.Services.AddScoped<VisitService>();
+builder.Services.AddScoped<UserService>();
 await builder.Build().RunAsync();

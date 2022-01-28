@@ -64,5 +64,10 @@ a, .btn-link {
     }
 
 .row.form-group {
+    padding: 5px 0px;
+}
+
+.graph{
+    transition: all 0.3s ease-in;
     padding: 5px 10px 20px 10px;
 }

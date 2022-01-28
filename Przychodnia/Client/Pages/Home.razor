@@ -4,26 +4,31 @@
 @using Przychodnia.Client.Components
 @using Przychodnia.Client.Services
 @inject DialogService DialogService
+@inject NavigationManager NavManager
+@inject Services.AppDataService appData
+
 
 <h3 class="mb-4 px-4 d-flex justify-content-center">Strona Główna</h3>
 
 <div class="d-flex justify-content-evenly">
     <div>
         <div>
-            <RadzenCard class="m-3">
-                <h3 class="h5">Contact</h3>
+            
+                <RadzenCard class="m-3">
+                    <h3 class="h5">Contact</h3>
                 <div class="d-flex flex-row">
-                    <RadzenImage Path="@account.PhotoPath" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                    <RadzenImage Path="@appData.account.PhotoPath" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                     <div>
                         <div>Imię i nazwisko</div>
-                        <div><b>@($"{account.Name} {account.Surname}")</b></div>
-                        <div><b>@account.RangName.RangName</b></div>                        
+                        <div><b>@($"{appData.account.Name} {appData.account.Surname}")</b></div>
+                        <div><b>@appData.account.RangName.RangName</b></div>                        
                         
                     </div>
                 </div>
-                <RadzenButton Click=@(args => OnAccountSelect(account)) Text="Aktualizuj Informacje" Icon="account_box" ButtonStyle="ButtonStyle.Secondary" />
+                <RadzenButton Click=@(args => OnAccountSelect(appData.account)) Text="Aktualizuj Informacje" Icon="account_box" ButtonStyle="ButtonStyle.Secondary" />
             </RadzenCard>
-            <RadzenCard class="m-3">
+            @if(paidVisits!=null && paidVisits[0].Amount + paidVisits[1].Amount > 0 ){
+            <RadzenCard class="m-3 graph">
                 <h3 class="h5">Opłacone wizyty</h3>
                 <div class="row">
                 <RadzenChart>
@@ -31,18 +36,21 @@
                     <RadzenLegend Position="LegendPosition.Bottom"/>
                 </RadzenChart>
                 </div>
-            </RadzenCard>
+            </RadzenCard>}
         </div>
     </div>
 
-    <RadzenScheduler Style="width: calc(100% - 400px); height: auto; aspect-ratio: 1.3;" LoadData=@OnLoadData @ref=@scheduler SlotRender=@OnSlotRender  TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
+
+    <RadzenScheduler Style="width: calc(100% - 400px); height: auto; aspect-ratio: 1.3;" @ref=@scheduler SlotRender=@OnSlotRender  TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
     TextProperty="Text" SelectedIndex="2"
     AppointmentRender=@OnAppointmentRender
     AppointmentSelect=@OnAppointmentSelect>
     <RadzenDayView />
     <RadzenWeekView />
     <RadzenMonthView />
-</RadzenScheduler>
+    </RadzenScheduler>
+    
+    
 </div>
 
 
@@ -52,14 +60,6 @@
 @code {
     RadzenScheduler<Appointment> scheduler;
 
-    User account = new User
-        {
-            ID = 1,
-            Name = "Sebastian",
-            Surname = "Zellah",
-            PhotoPath = "https://pbs.twimg.com/media/EtvfOFTWYAc3j1q.jpg",
-            RangName = new Rang { RangID = 1, RangName = "Lekarz" }
-        };
 
     class DataItem
     {
@@ -71,12 +71,12 @@
     new DataItem
     {
     Name = "Opłacone",
-    Amount = 3
+    Amount = 0
     },
     new DataItem
     {
     Name = "Nieopłacone",
-    Amount = 2
+    Amount = 0
     }};
 
     async Task<List<Appointment>> visitToAppointment(IEnumerable<Visit> visits)
@@ -89,70 +89,40 @@
         return temp;
     }
 
-        /*Visit[] visits = new Visit[]
-        {
-            new Visit
-            {
-            VisitId = 1,
-        Name = "Wizyta kontrolna",
-    Description = "Życie jest słabe i niefajne",
-    Date = DateTime.Today.AddHours(14),
-    Duration = 30,
-    Paid = false,
-    Successful = false
-            },
-            new Visit
-            {
-    VisitId = 2,
-    Name = "Kanałowe",
-    Description = "Życie jest słabe i niefajne",
-    Date = DateTime.Today.AddHours(21),
-    Duration = 30,
-    Paid = false,
-    Successful = false
-    },
-            new Visit
-            {
-    VisitId = 3,
-    Name = "Wizyta kontrolna",
-    Description = "Życie jest słabe i niefajne",
-    Date = DateTime.Today.AddDays(2).AddHours(15),
-    Duration = 30,
-    Paid = false,
-    Successful = false
-            },
-            new Visit
-    {
-    VisitId = 4,
-    Name = "Wizyta kontrolna",
-    Description = "Życie jest słabe i niefajne",
-    Date = DateTime.Today.AddDays(-5).AddHours(17),
-    Duration = 30,
-    Paid = false,
-    Successful = false
-        },
-        };
-    */
-    public List<Visit> visit { get; set; }
+    public List<Visit> visits = new List<Visit>() { new Visit()};
 
-    List<Appointment> appointments;
+    List<Appointment> appointments = new List<Appointment>();
 
     [Inject]
     public IVisitService VisitService { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        visit = (await VisitService.GetVisits()).ToList();
-        foreach (Visit i in visit)
+        if (appData.isLoggedIn)
         {
-            Console.WriteLine(i);
+            visits = (await VisitService.GetVisits()).Where(v => v.PatientName == $"{appData.account.Name} {appData.account.Surname}").ToList();
+            appData.visits = visits;
+            appointments = await visitToAppointment(appData.visits);
+            paidVisits[0].Amount = visits.Where(v => v.Paid).Count();
+            paidVisits[1].Amount = visits.Count() - paidVisits[0].Amount;
+            StateHasChanged();
+            appData.RefreshRequested += RefreshMe;
         }
-        
+        else
+        {
+            NavManager.NavigateTo("/");
+        }
+    }
+
+    async void RefreshMe()
+    {
+        appointments = await visitToAppointment(appData.visits);
+        StateHasChanged();
     }
 
     async Task OnLoadData(SchedulerLoadDataEventArgs args)
     {
-        appointments = await visitToAppointment(visit);
+        appointments = await visitToAppointment(appData.visits);
     }
 
     void OnSlotRender(SchedulerSlotRenderEventArgs args) 
@@ -174,9 +144,9 @@
     {
         // Never call StateHasChanged in AppointmentRender - would lead to infinite loop
 
-        if (args.Data.Text == "Birthday")
+        if (args.Data.visit.Paid)
         {
-            args.Attributes["style"] = "background: red";
+            args.Attributes["style"] = "background: blue";
         }
     }
 

@@ -17,5 +17,12 @@ namespace Przychodnia.Shared
         public string PhotoPath { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
+        static public User Empty { get { return new User() { Name = "", Surname = "", ID = 0, PhotoPath = "", Email = "", Password = "" }; } }
+
+        public override string ToString()
+        {
+            return $"{Name} {Surname}";
+        }
     }
 }

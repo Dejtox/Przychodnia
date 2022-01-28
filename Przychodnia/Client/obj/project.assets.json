@@ -369,7 +369,7 @@
           "build/netstandard2.0/_._": {}
         }
       },
-      "Radzen.Blazor/3.14.2": {
+      "Radzen.Blazor/3.14.6": {
         "type": "package",
         "dependencies": {
           "LibSassBuilder": "2.0.1",
@@ -774,6 +774,9 @@
       "Przychodnia.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Radzen.Blazor": "3.14.6"
+        },
         "compile": {
           "bin/placeholder/Przychodnia.Shared.dll": {}
         },
@@ -1150,7 +1153,7 @@
           "build/netstandard2.0/_._": {}
         }
       },
-      "Radzen.Blazor/3.14.2": {
+      "Radzen.Blazor/3.14.6": {
         "type": "package",
         "dependencies": {
           "LibSassBuilder": "2.0.1",
@@ -1549,6 +1552,9 @@
       "Przychodnia.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Radzen.Blazor": "3.14.6"
+        },
         "compile": {
           "bin/placeholder/Przychodnia.Shared.dll": {}
         },
@@ -2425,10 +2431,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Radzen.Blazor/3.14.2": {
-      "sha512": "jNnCYGdnyGqvMxmH9vaW6cPByNDAGiBFRAPygzzV2IIu47slhJxZ8+u7Xw3DysfIEj4K/qrViF8JeY/geLk5Wg==",
+    "Radzen.Blazor/3.14.6": {
+      "sha512": "1gDeksDJl03DEHg8f+08tFvlqT/zPEMYjagSrXngCj98E/PW8KiqWc9KfVz7ySRUq5T+7tfyn+yPJciQY2hH3w==",
       "type": "package",
-      "path": "radzen.blazor/3.14.2",
+      "path": "radzen.blazor/3.14.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2442,7 +2448,7 @@
         "lib/net5.0/Radzen.Blazor.xml",
         "lib/netstandard2.1/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.xml",
-        "radzen.blazor.3.14.2.nupkg.sha512",
+        "radzen.blazor.3.14.6.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",
@@ -3114,7 +3120,7 @@
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.1",
       "Microsoft.Extensions.Http >= 6.0.0",
       "Przychodnia.Shared >= 1.0.0",
-      "Radzen.Blazor >= 3.14.2",
+      "Radzen.Blazor >= 3.14.6",
       "Syncfusion.Blazor.Grid >= 19.4.0.40"
     ]
   },
@@ -3125,11 +3131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+      "projectUniqueName": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Client\\Przychodnia.Client.csproj",
       "projectName": "Przychodnia.Client",
-      "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+      "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Client\\Przychodnia.Client.csproj",
       "packagesPath": "C:\\Users\\marci\\.nuget\\packages\\",
-      "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\obj\\",
+      "outputPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "I:\\Program Files\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
@@ -3150,8 +3156,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
-              "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
+            "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Shared\\Przychodnia.Shared.csproj": {
+              "projectPath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Shared\\Przychodnia.Shared.csproj"
             }
           }
         }
@@ -3181,7 +3187,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[3.14.2, )"
+            "version": "[3.14.6, )"
           },
           "Syncfusion.Blazor.Grid": {
             "target": "Package",

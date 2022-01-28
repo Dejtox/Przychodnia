@@ -1,10 +1,13 @@
 ﻿@inherits LayoutComponentBase
+@inject Services.AppDataService appData
 <RadzenDialog />
 
 <div class="page">
     <main>
         <nav class="navbar navbar-light bg-light justify-content-center">
-          <NavMenu />
+            @if(appData.isLoggedIn){
+                <NavMenu />
+            }
         </nav>
 
         <article class="content px-4 d-flex justify-content-center flex-column">

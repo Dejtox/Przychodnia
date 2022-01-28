@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Przychodnia.Server.Services;
 using Przychodnia.Shared;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Przychodnia.Server.Models
     public class VisitsRepository : IVisitsRepository
     {
         private readonly AppDb appDb;
+        private readonly IMailService mailService;
 
         public VisitsRepository(AppDb appDb)
         {

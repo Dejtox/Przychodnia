@@ -1,0 +1,143 @@
+﻿@page "/register"
+@using Przychodnia.Client.Services
+@using System.Security.Cryptography
+@using System.Text
+@inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
+
+<h3>Zarejestruj się</h3>
+<RadzenTemplateForm Data="@newUser" Submit="@((User args) => { Submit(args); })">
+    <RadzenFieldset>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Imię" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Name style="width: 100%;" Name="Name" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Nazwisko" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Surname style="width: 100%;" Name="Surname" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Email" />
+            </div>
+            <div class="col-md-8">
+                <RadzenTextBox @bind-Value=@newUser.Email style="width: 100%;" Name="Email" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Hasło" />
+            </div>
+            <div class="col-md-8">
+                <RadzenPassword  @bind-Value=@newUser.Password style="width: 100%;" Name="Password" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenLabel Text="Zdjęcie profilowe" />
+            </div>
+            <div class="col-md-8">
+                <RadzenFileInput @bind-Value=@newUser.PhotoPath TValue="string" Class="w-100" 
+                Change=@(args => OnChange(args, "FileInput")) />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4 align-items-center d-flex">
+                <RadzenCheckBox @bind-Value=@checkBox1Value  Name="Agreement" TValue="bool"/>
+            </div>
+            <div class="col-md-8">
+                <p>
+                    Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).
+                </p>
+            </div>
+        </div>
+    </RadzenFieldset>
+    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Zarejestruj" />
+</RadzenTemplateForm>
+
+@code {
+    User newUser = new User();
+
+    [Inject]
+    public IUserService UserService { get; set; }
+    public bool checkBox1Value = false;
+
+
+    void OnChange(object o, string s)
+    {
+
+    }
+
+    string encrypt(string password)
+    {
+        using(SHA256 cipher = SHA256.Create())
+        {
+            byte[] hash = cipher.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new StringBuilder();
+            foreach (byte b in hash)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+
+    async void Submit(User u)
+    {
+        if(checkBox1Value)
+        {
+            if (!String.IsNullOrEmpty(newUser.Email))
+            {
+                if (!String.IsNullOrEmpty(newUser.Password))
+                {
+                    if (!String.IsNullOrEmpty(newUser.PhotoPath))
+                    {
+                        if (!String.IsNullOrEmpty(newUser.Name))
+                        {
+                            if (!String.IsNullOrEmpty(newUser.Surname))
+                            {
+                            newUser.RangName = Rang.getRang(3);
+                            newUser.RangID = 3;
+                            newUser.Password = encrypt(newUser.Password);
+                            UserService.AddUser(newUser);
+                            NavManager.NavigateTo("/");
+                            }
+                            else
+                            {
+                                await JsRuntime.InvokeVoidAsync("alert", "Nazwisko jest puste");
+                            }
+                        }
+                        else
+                        {
+                            await JsRuntime.InvokeVoidAsync("alert", "Imię jest puste");
+                        }
+                    }
+                    else
+                    {
+                        await JsRuntime.InvokeVoidAsync("alert", "Brak zdjęcia");
+                    }
+                }
+                else
+                {
+                    await JsRuntime.InvokeVoidAsync("alert", "Hasło jest puste");
+                }
+            }
+            else
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "Email jest pusty");
+            }
+        }
+        else
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Zgoda RODO nie zatwierdzona");
+        }
+    }
+}

@@ -9,7 +9,7 @@ namespace Przychodnia.Client.Services
         Task<Visit> GetVisit(int VisitId);
         Task<Visit> GetVisitByPatientName(string PatientName);
         Task<Visit> GetVisitByDoctorName(string PatientName);
-        Task<Visit> AddVisit(Visit visit);
+        Task AddVisit(Visit visit);
         Task<Visit> UpdateVisit(Visit visit);
         Task DeleteVisit(int VisitId);
     }
