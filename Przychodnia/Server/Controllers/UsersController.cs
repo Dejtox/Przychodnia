@@ -12,6 +12,7 @@ namespace Przychodnia.Server.Controllers
         private readonly IUserRepository UserRepository;
         private readonly IMailService MailService;
 
+
         public UsersController(IUserRepository UserRepository, IMailService MailService)
         {
             this.UserRepository = UserRepository;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X/vB5SmwW6+hqhWXO+4NlHFkrMP8wQCT1c0zEt4w0wSAPYXe72UzvEF4og8JDvGSB8Vxo9tAv0s4SNyypuksNA==",
+  "dgSpecHash": "FHiUBrDLCtqa6Qu+2TjZjQCbRlXKx0BpJITMGhNatGsrmU4LRDYceT2KXnHvi4tyszl8kcNlMMlktnribsoJhw==",
   "success": true,
-  "projectFilePath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\Przychodnia\\Przychodnia\\Client\\Przychodnia.Client.csproj",
+  "projectFilePath": "I:\\Marcin\\Szkoła\\AO\\Przychodnia\\Przychodnia\\przychodnia1\\Przychodnia\\Client\\Przychodnia.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marci\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.1\\microsoft.aspnetcore.authorization.6.0.1.nupkg.sha512",
@@ -33,7 +33,7 @@
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.1\\microsoft.jsinterop.webassembly.6.0.1.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
-    "C:\\Users\\marci\\.nuget\\packages\\radzen.blazor\\3.14.2\\radzen.blazor.3.14.2.nupkg.sha512",
+    "C:\\Users\\marci\\.nuget\\packages\\radzen.blazor\\3.14.6\\radzen.blazor.3.14.6.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\syncfusion.blazor.buttons\\19.4.0.40\\syncfusion.blazor.buttons.19.4.0.40.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\syncfusion.blazor.calendars\\19.4.0.40\\syncfusion.blazor.calendars.19.4.0.40.nupkg.sha512",
     "C:\\Users\\marci\\.nuget\\packages\\syncfusion.blazor.core\\19.4.0.40\\syncfusion.blazor.core.19.4.0.40.nupkg.sha512",
