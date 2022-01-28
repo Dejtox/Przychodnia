@@ -14,19 +14,20 @@ namespace Przychodnia.Client.Services
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            IEnumerable<User> users =  await httpClient.GetFromJsonAsync<IEnumerable<User>>("api/users");          
-            foreach(User u in users)
+            var response = await httpClient.GetFromJsonAsync<IEnumerable<User>>("/api/users");
+
+            foreach (User u in response)
             {
-                if(u.RangID != null)
+                if (u.RangID != null)
                     u.RangName = Rang.getRang((int)u.RangID);
             }
-            return users;
+            return response;
         }
 
         public async Task<User> AddUser(User User)
         {
-           var u = await httpClient.PostAsJsonAsync<User>("api/users", User);
-            return User;
+            var response = await httpClient.PostAsJsonAsync<User>("/api/users", User);
+            return await response.Content.ReadFromJsonAsync<User>();
         }
 
         public Task DeleteUser(int UserId)
@@ -51,8 +52,9 @@ namespace Przychodnia.Client.Services
 
         public async Task<User> UpdateUser(User User)
         {
-            await httpClient.PutAsJsonAsync<User>($"api/users{User.ID}",User);
-            return User;
+            var response = await httpClient
+             .PutAsJsonAsync<User>($"/api/users/{User.ID}", User);
+            return await response.Content.ReadFromJsonAsync<User>();
         }
     }
 }

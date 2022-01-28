@@ -57,7 +57,7 @@
                 <RadzenButton Click=@(args => CancelVisit()) ButtonStyle="ButtonStyle.Danger" Text="Anuluj wizytę" />
             }
             else if (DateTime.Today < model.Date){
-                <p>Nie można anulować wisyty w dniu jej wystąpienia.</p>
+                <p>Nie można anulować wizyty w dniu jej wystąpienia.</p>
             }
             else if(DateTime.Today > model.Date)
             {
