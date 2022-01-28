@@ -87,8 +87,6 @@ else
                         <b>@visit.Date</b>
                         <div class="mt-3">Opłacona</div>
                         <b>@(visit.Paid ? "Tak" : "Nie")</b>
-                        <div class="mt-3">Faktura</div>
-                        <b>@visit.InvoiceNumber()</b>
                     </div>
                 </div>
             </RadzenCard>
@@ -117,9 +115,10 @@ else
 
     string[] categories =
             {
-            "Kanałowe",
+            "Leczenie Kanałowe",
             "Wizyta kontrolna",
-            "Borowanko"
+            "Wybielanie Zębów",
+            "Odkamienianie"
         };
 
     Hour[] hours = new Hour[]
@@ -212,7 +211,7 @@ else
             {
                 if (dateDay >= DateTime.Now)
                 {
-                    if (dateHour != -1)
+                    if ((dateDay == DateTime.Today && dateHour-1 > DateTime.Now.Hour) || dateDay > DateTime.Now)
                     {
                       if (!String.IsNullOrEmpty(visit.Name))
                         {
