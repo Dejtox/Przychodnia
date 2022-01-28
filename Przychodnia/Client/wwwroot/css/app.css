@@ -69,4 +69,5 @@ a, .btn-link {
 
 .graph{
     transition: all 0.3s ease-in;
+    padding: 5px 10px 20px 10px;
 }
